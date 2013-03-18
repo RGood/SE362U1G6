@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JTextArea;
 
 public class BoldCommand extends JButton implements Command {
-
+//test
     private JTextArea text;
 
     public BoldCommand(JTextArea text) {
