@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * Copy Command
  *
  * Copys the selected text
  *

@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * Table Command
  * 
  * Inserts an table into the buffer, allowing
  * the user to specify the number of cols and rows

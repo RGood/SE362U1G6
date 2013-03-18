@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * H3 Command
  * 
  * Inserts an H3 tag in the buffer
  * 

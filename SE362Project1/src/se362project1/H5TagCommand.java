@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * H5 Command
  * 
  * Inserts an H5 tag in the buffer
  * 

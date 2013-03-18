@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * Unorder List Command
  * 
  * Inserts an Unordered List into the buffer, allowing
  * the user to specify the number of items they want

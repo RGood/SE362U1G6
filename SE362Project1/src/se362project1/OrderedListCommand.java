@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * Ordered List Command
  * 
  * Inserts an Ordered List into the buffer, allowing
  * the user to specify the number of items they want

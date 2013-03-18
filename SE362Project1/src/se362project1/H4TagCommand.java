@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * H4 Command
  * 
  * Inserts an H4 tag in the buffer
  * 

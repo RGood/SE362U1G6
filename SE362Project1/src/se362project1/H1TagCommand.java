@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * H1 tag Command
  * 
  * Inserts an H1 tag in the buffer
  * 

@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * Italic Command
  * 
  * Inserts an italic tag in the buffer
  * 

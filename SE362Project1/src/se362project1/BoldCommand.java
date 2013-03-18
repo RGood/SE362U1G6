@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * Bold Command
  *
  * Inserts a Bold tag in the buffer
  *

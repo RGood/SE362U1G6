@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * H6 Command
  * 
  * Inserts an H6 tag in the buffer
  * 

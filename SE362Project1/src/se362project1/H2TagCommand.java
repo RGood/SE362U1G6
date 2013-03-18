@@ -1,6 +1,6 @@
 /*Christopher Norman
  * 03/17/13
- * Command Controller
+ * H2 Command
  * 
  * Inserts an H2 tag in the buffer
  * 
