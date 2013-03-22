@@ -19,11 +19,24 @@ import javax.swing.JEditorPane;
  */
 public class Editor extends javax.swing.JFrame {
     ArrayList<HTMLBuffer> buffers = new ArrayList<HTMLBuffer>();
+    FormatCheck checker = new BasicHTMLParser();
     /**
      * Creates new form Editor
      */
     public Editor() {
         initComponents();
+    }
+    
+    public boolean check(){
+        int index = jTabbedPane3.getSelectedIndex();
+        return checker.Check(buffers.get(index));
+    }
+    
+    public boolean checkAt(int index){
+        if (index<buffers.size()){
+            return checker.Check(buffers.get(index));
+        }
+        return false;
     }
     
     public void save(){
