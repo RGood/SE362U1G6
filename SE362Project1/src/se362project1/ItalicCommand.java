@@ -7,10 +7,12 @@
  */
 package se362project1;
 
-import javax.swing.JButton;
-import javax.swing.JTextArea;
 
-public class ItalicCommand extends JButton implements Command {
+import javax.swing.JMenuItem;
+import javax.swing.JTextArea;
+import javax.swing.text.BadLocationException;
+
+public class ItalicCommand extends JMenuItem implements Command {
 
     private JTextArea text;
 
@@ -20,7 +22,11 @@ public class ItalicCommand extends JButton implements Command {
 
     @Override
     public void execute() {
-        text.insert("<i></i>", text.getCaretPosition());
+        try {
+            text.getDocument().insertString(text.getCaretPosition(), "<i></i>", null);
+        } catch (BadLocationException ex) {
+            System.out.print("NULL");
+        }
     }
 
     @Override

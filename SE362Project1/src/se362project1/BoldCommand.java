@@ -7,20 +7,28 @@
  */
 package se362project1;
 
-import javax.swing.JButton;
-import javax.swing.JTextArea;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JEditorPane;
+import javax.swing.JMenuItem;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 
-public class BoldCommand extends JButton implements Command {
-//test
-    private JTextArea text;
+public class BoldCommand extends JMenuItem implements Command {
 
-    public BoldCommand(JTextArea text) {
+    private JEditorPane text;
+
+    public BoldCommand(JEditorPane text) {
         this.text = text;
     }
 
     @Override
     public void execute() {
-        text.insert("<b></b>", text.getCaretPosition());
+        try {
+            text.getDocument().insertString(text.getCaretPosition(), "<b></b>", null);
+        } catch (BadLocationException ex) {
+            System.out.print("NULL");
+        }
     }
 
     @Override

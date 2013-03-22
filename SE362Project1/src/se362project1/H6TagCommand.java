@@ -7,10 +7,12 @@
  */
 package se362project1;
 
-import javax.swing.JButton;
-import javax.swing.JTextArea;
 
-public class H6TagCommand extends JButton implements Command {
+import javax.swing.JMenuItem;
+import javax.swing.JTextArea;
+import javax.swing.text.BadLocationException;
+
+public class H6TagCommand extends JMenuItem implements Command {
 
     private JTextArea text;
 
@@ -20,7 +22,11 @@ public class H6TagCommand extends JButton implements Command {
 
     @Override
     public void execute() {
-        text.insert("<h6></h6>", text.getCaretPosition());
+        try {
+            text.getDocument().insertString(text.getCaretPosition(), "<h6></h6>", null);
+        } catch (BadLocationException ex) {
+            System.out.print("NULL");
+        }
     }
 
     @Override

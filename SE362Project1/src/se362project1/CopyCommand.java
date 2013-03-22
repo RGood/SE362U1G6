@@ -10,14 +10,15 @@ package se362project1;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
+import javax.swing.JEditorPane;
+import javax.swing.JMenuItem;
 
-public class CopyCommand extends JButton implements Command {
 
-    private JTextArea text;
+public class CopyCommand extends JMenuItem implements Command {
 
-    public CopyCommand(JTextArea text) {
+    private JEditorPane text;
+
+    public CopyCommand(JEditorPane text) {
         this.text = text;
     }
 

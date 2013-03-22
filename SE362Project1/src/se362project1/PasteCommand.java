@@ -13,11 +13,10 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
-
-import javax.swing.JButton;
+import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 
-public class PasteCommand extends JButton implements Command {
+public class PasteCommand extends JMenuItem implements Command {
 
     private JTextArea text;
     private String copyText = " ";

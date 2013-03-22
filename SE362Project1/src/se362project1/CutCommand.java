@@ -10,11 +10,10 @@ package se362project1;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
-
-import javax.swing.JButton;
+import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 
-public class CutCommand extends JButton implements Command {
+public class CutCommand extends JMenuItem implements Command {
 
     private JTextArea text;
 

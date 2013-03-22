@@ -13,11 +13,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class DefinitionListCommand extends JButton implements Command, ActionListener {
+public class DefinitionListCommand extends JMenuItem implements Command, ActionListener {
 
     private JTextArea text;
     private JButton confirm;

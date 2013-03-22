@@ -12,10 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 
-public class TableTagCommand extends JButton implements Command, ActionListener {
+public class TableTagCommand extends JMenuItem implements Command, ActionListener {
 
-    private JTextArea text;
+    private JEditorPane text;
     private JButton confirm;
     private JButton cancel;
     private JTextField rows;
@@ -25,7 +26,7 @@ public class TableTagCommand extends JButton implements Command, ActionListener 
     private JLabel colLabel;
     private JLabel rowLabel;
 
-    public TableTagCommand(JTextArea text) {
+    public TableTagCommand(JEditorPane text) {
         this.text = text;
     }
 
@@ -62,30 +63,38 @@ public class TableTagCommand extends JButton implements Command, ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource().equals(confirm)) {
+        try {
+            if (e.getSource().equals(confirm)) {
 
             int rowNum = Integer.parseInt(rows.getText());
             int colNum = Integer.parseInt(cols.getText());
+            
 
-            text.insert("\n<table>", text.getCaretPosition());
+            text.getDocument().insertString(text.getCaretPosition(),"\n<table>", null);  
 
             for (int i = 0; i < rowNum; i++) {
 
-                text.insert("\n    <tr>", text.getCaretPosition());
-
+                text.getDocument().insertString(text.getCaretPosition(),"\n    <tr>", null);    
+                
                 for (int s = 0; s < colNum; s++) {
-                    text.insert("\n        <td></td>", text.getCaretPosition());
+                    text.getDocument().insertString(text.getCaretPosition(),"\n        <td></td>", null);   
                 }
 
-                text.insert("\n    </tr>", text.getCaretPosition());
+                text.getDocument().insertString(text.getCaretPosition(),"\n    </tr>", null);   
 
             }
 
-            text.insert("\n</table>", text.getCaretPosition());
+            text.getDocument().insertString(text.getCaretPosition(),"\n</table>", null);   
 
         } else if (e.getSource().equals(cancel)) {
 
             frame.dispose();
         }
+            
+            
+        } catch (BadLocationException ex) {
+            System.out.print("NULL");
+        }
+
     }
 }

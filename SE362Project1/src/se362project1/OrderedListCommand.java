@@ -8,15 +8,17 @@
  */
 package se362project1;
 
-import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+import javax.swing.text.BadLocationException;
 
-public class OrderedListCommand extends JButton implements Command {
+public class OrderedListCommand extends JMenuItem implements Command {
 
-    private JTextArea text;
+    private JEditorPane text;
 
-    public OrderedListCommand(JTextArea text) {
+    public OrderedListCommand(JEditorPane text) {
         this.text = text;
     }
 
@@ -26,13 +28,17 @@ public class OrderedListCommand extends JButton implements Command {
                 "Enter the ammount of items for the list");
         int num = Integer.parseInt(str);
 
-        text.insert("<ol>", text.getCaretPosition());
+        try {
+            text.getDocument().insertString(text.getCaretPosition(), "<ol>", null);
 
-        for (int i = 0; i < num; i++) {
-            text.insert("\n    <li></li>", text.getCaretPosition());
+            for (int i = 0; i < num; i++) {
+                text.getDocument().insertString(text.getCaretPosition(), "\n    <li></li>", null);
+            }
+
+            text.getDocument().insertString(text.getCaretPosition(), "</ol>", null);
+        } catch (BadLocationException ex) {
+            System.out.print("NULL");
         }
-
-        text.insert("\n</ol>", text.getCaretPosition());
     }
 
     @Override

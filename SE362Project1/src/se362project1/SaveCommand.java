@@ -1,18 +1,18 @@
 /*Christopher Norman
  * 03/18/13
  *
- * This command is useded to save files
+ * This command is used to save files
  *
  */
 
 package se362project1;
 
 import java.io.File;
-import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
 
 
-public class SaveCommand extends JButton implements Command {
+public class SaveCommand extends JMenuItem implements Command {
 
     private JFileChooser choose;
     private File file;
