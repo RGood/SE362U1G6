@@ -5,6 +5,11 @@
 package se362project1;
 
 import java.awt.Toolkit;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JEditorPane;
 
@@ -27,8 +32,27 @@ public class Editor extends javax.swing.JFrame {
         buffers.add(new HTMLBuffer());
     }
     
-    public void openTab(String filename){
+    public boolean openTab(String filename){
+        File inFile = new File(filename);
+        HTMLBuffer newBuff = new HTMLBuffer();
+        if(!inFile.exists()){
+            return false;
+        }
+        try{
+            BufferedReader buff = new BufferedReader(new FileReader(inFile));
+            while(buff.ready()){
+                newBuff.appendLine(buff.readLine());
+            }
+        } catch (FileNotFoundException ex) {
+            return false;
+        } catch (IOException ex) {
+            return false;
+        }
+        JEditorPane newPane = new JEditorPane();
+        jTabbedPane3.addTab("*untitled "+buffers.size()+1+"*", newPane);
+        buffers.add(newBuff);
         
+        return true;
     }
 
     /**
