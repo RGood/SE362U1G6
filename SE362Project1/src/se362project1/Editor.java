@@ -26,6 +26,18 @@ public class Editor extends javax.swing.JFrame {
         initComponents();
     }
     
+    public void save(){
+        int index = jTabbedPane3.getSelectedIndex();
+        buffers.get(index).save();
+    }
+    
+    public void saveAs(String fileName){
+        int index = jTabbedPane3.getSelectedIndex();
+        buffers.get(index).setFileName(fileName);
+        buffers.get(index).save();
+        
+    }
+    
     public void addTab(){
         JEditorPane editorPane = new JEditorPane();
         jTabbedPane3.addTab("*untitled "+buffers.size()+1+"*", editorPane);
@@ -34,7 +46,7 @@ public class Editor extends javax.swing.JFrame {
     
     public boolean openTab(String filename){
         File inFile = new File(filename);
-        HTMLBuffer newBuff = new HTMLBuffer();
+        HTMLBuffer newBuff = new HTMLBuffer(filename);
         if(!inFile.exists()){
             return false;
         }
