@@ -155,6 +155,7 @@ public class Editor extends javax.swing.JFrame {
             @Override
             public void run() {
                 Editor editor = new Editor();
+                editor.setTitle("Group 6 Editor");
                 Toolkit tk = Toolkit.getDefaultToolkit();  
                 int xSize = ((int) tk.getScreenSize().getWidth());  
                 int ySize = ((int) tk.getScreenSize().getHeight());  
