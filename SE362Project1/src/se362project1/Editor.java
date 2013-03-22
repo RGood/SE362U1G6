@@ -38,6 +38,19 @@ public class Editor extends javax.swing.JFrame {
         
     }
     
+    public void closeCur(){
+        int index = jTabbedPane3.getSelectedIndex();
+        jTabbedPane3.remove(index);
+        buffers.remove(index);
+    }
+    
+    public void closeAt(int index){
+        if(index<buffers.size()){
+            jTabbedPane3.remove(index);
+            buffers.remove(index);
+        }
+    }
+    
     public void addTab(){
         JEditorPane editorPane = new JEditorPane();
         jTabbedPane3.addTab("*untitled "+buffers.size()+1+"*", editorPane);
