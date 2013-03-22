@@ -8,15 +8,15 @@
 package se362project1;
 
 
+import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
-import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 
 public class ItalicCommand extends JMenuItem implements Command {
 
-    private JTextArea text;
+    private JEditorPane text;
 
-    public ItalicCommand(JTextArea text) {
+    public ItalicCommand(JEditorPane text) {
         this.text = text;
     }
 

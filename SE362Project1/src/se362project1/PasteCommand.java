@@ -13,15 +13,18 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
-import javax.swing.JTextArea;
+import javax.swing.text.BadLocationException;
 
 public class PasteCommand extends JMenuItem implements Command {
 
-    private JTextArea text;
+    private JEditorPane text;
     private String copyText = " ";
 
-    public PasteCommand(JTextArea text) {
+    public PasteCommand(JEditorPane text) {
         this.text = text;
     }
 
@@ -37,8 +40,11 @@ public class PasteCommand extends JMenuItem implements Command {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        text.insert(copyText, text.getCaretPosition());
+        try {
+            text.getDocument().insertString(text.getCaretPosition(), copyText, null);   
+        } catch (BadLocationException ex) {
+            Logger.getLogger(PasteCommand.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

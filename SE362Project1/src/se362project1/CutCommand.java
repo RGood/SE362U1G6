@@ -10,14 +10,15 @@ package se362project1;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
 import javax.swing.JTextArea;
 
 public class CutCommand extends JMenuItem implements Command {
 
-    private JTextArea text;
+    private JEditorPane text;
 
-    public CutCommand(JTextArea text) {
+    public CutCommand(JEditorPane text) {
         this.text = text;
     }
 

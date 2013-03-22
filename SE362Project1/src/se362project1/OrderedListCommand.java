@@ -11,7 +11,6 @@ package se362project1;
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 
 public class OrderedListCommand extends JMenuItem implements Command {

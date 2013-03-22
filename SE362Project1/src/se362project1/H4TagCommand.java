@@ -7,15 +7,15 @@
  */
 package se362project1;
 
+import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
-import javax.swing.JTextArea;
 import javax.swing.text.BadLocationException;
 
 public class H4TagCommand extends JMenuItem implements Command {
 
-    private JTextArea text;
+    private JEditorPane text;
 
-    public H4TagCommand(JTextArea text) {
+    public H4TagCommand(JEditorPane text) {
         this.text = text;
     }
 
