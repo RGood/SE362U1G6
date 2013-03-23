@@ -8,8 +8,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -43,11 +41,17 @@ public class HTMLBuffer {
     }
     
     public boolean save(){
-        File saveFile = new File(fileName);
         try {
-            BufferedWriter outFile = new BufferedWriter(new FileWriter(saveFile));
+            File saveFile = new File(fileName);
+            if(!saveFile.exists()){
+                saveFile.createNewFile();
+            }
+            System.out.println(saveFile.getAbsolutePath());
+            BufferedWriter outFile = new BufferedWriter(new FileWriter(saveFile.getAbsoluteFile()));
             outFile.write(buffer);
+            outFile.close();
         } catch (IOException ex) {
+            ex.printStackTrace();
             return false;
         }
         return true;

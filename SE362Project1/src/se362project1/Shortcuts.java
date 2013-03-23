@@ -19,6 +19,7 @@ public class Shortcuts implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
+        
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -28,7 +29,7 @@ public class Shortcuts implements KeyListener {
         if(e.isControlDown()){
             System.out.println(key);
             if(key == 83){
-                if(!editor.getCurFileName().startsWith("*untitled ")){
+                if(!editor.getCurFileName().equals("")){
                     editor.save();
                 }else{
                     //prompt for input

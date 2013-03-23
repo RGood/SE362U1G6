@@ -46,7 +46,9 @@ public class Editor extends javax.swing.JFrame {
     
     public void saveAs(String fileName){
         int index = jTabbedPane3.getSelectedIndex();
+        System.out.println(index);
         buffers.get(index).setFileName(fileName);
+        System.out.println(fileName);
         buffers.get(index).save();
         
     }
