@@ -19,15 +19,14 @@ public class Shortcuts implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("key pressed");
-        char key = e.getKeyChar();
+        int key = e.getKeyCode();
         if(e.isControlDown()){
-            if(key == 's'){
+            if(key == 83){
                 if(!editor.getCurFileName().startsWith("*untitled ")){
                     editor.save();
                 }else{
@@ -36,11 +35,10 @@ public class Shortcuts implements KeyListener {
                 }
             }
         }
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

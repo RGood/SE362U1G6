@@ -71,6 +71,7 @@ public class Editor extends javax.swing.JFrame {
     
     public void addTab(){
         JEditorPane editorPane = new JEditorPane();
+        editorPane.addKeyListener(new Shortcuts(this));
         jTabbedPane3.addTab("*untitled "+buffers.size()+1+"*", editorPane);
         buffers.add(new HTMLBuffer());
     }
@@ -93,6 +94,7 @@ public class Editor extends javax.swing.JFrame {
         }
         JEditorPane newPane = new JEditorPane();
         jTabbedPane3.addTab("*untitled "+buffers.size()+1+"*", newPane);
+        newPane.addKeyListener(new Shortcuts(this));
         buffers.add(newBuff);
         
         return true;
@@ -180,7 +182,6 @@ public class Editor extends javax.swing.JFrame {
                 editor.setSize(xSize,ySize);  
                 editor.setVisible(true);
                 editor.addTab();
-                Shortcuts s = new Shortcuts(editor);
             }
             
         });
