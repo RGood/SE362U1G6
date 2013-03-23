@@ -7,6 +7,7 @@
  */
 package se362project1;
 
+import java.awt.Component;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JEditorPane;
@@ -29,9 +30,11 @@ public class BoldCommand extends JMenuItem implements Command {
     @Override
     public void execute() {
         
-        JScrollPane scroll= (JScrollPane)text.getComponentAt(text.getSelectedIndex());
-        JViewport view = (JViewport)scroll.getViewport();
-        pane = (JEditorPane)view.getComponent(0);
+        //JScrollPane scroll = (JScrollPane)text.getSelectedComponent();
+        //JViewport view = (JViewport)scroll.getViewport();
+        //pane = (JEditorPane)view.getComponent(0);
+        
+        pane = (JEditorPane)text.getSelectedComponent();
         
         try {
             pane.getDocument().insertString(pane.getCaretPosition(), "<b></b>", null);
