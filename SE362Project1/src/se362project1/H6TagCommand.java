@@ -10,20 +10,30 @@ package se362project1;
 
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JViewport;
 import javax.swing.text.BadLocationException;
 
 public class H6TagCommand extends JMenuItem implements Command {
 
-    private JEditorPane text;
-
-    public H6TagCommand(JEditorPane text) {
+    private JEditorPane pane;
+    private JTabbedPane text;
+    
+    public H6TagCommand(JTabbedPane text) {
         this.text = text;
     }
 
     @Override
     public void execute() {
+        
+        JScrollPane scroll = (JScrollPane) text.getComponentAt(text.getSelectedIndex());
+        JViewport view = (JViewport) scroll.getViewport();
+        pane = (JEditorPane) view.getComponent(0);
+        
+        
         try {
-            text.getDocument().insertString(text.getCaretPosition(), "<h6></h6>", null);
+            pane.getDocument().insertString(pane.getCaretPosition(), "<h6></h6>", null);
         } catch (BadLocationException ex) {
             System.out.print("NULL");
         }

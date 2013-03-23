@@ -21,16 +21,15 @@ public class OpenCommand extends JMenuItem implements Command{
     private File file;
     private JEditorPane text;
     private JTabbedPane pane;
-    private CurrentFileList list;
+  
 
-    public OpenCommand(JEditorPane text, JTabbedPane pane){
-        this.text = text;
+    public OpenCommand(JTabbedPane pane){
         choose = new JFileChooser();
-        list = CurrentFileList.getSingletonObject();
     }
 
     @Override
     public void execute() {
+       text = new JEditorPane();
        choose.showOpenDialog(null);
        file = choose.getSelectedFile();
        pane.addTab(file.getName(), text);
@@ -38,8 +37,7 @@ public class OpenCommand extends JMenuItem implements Command{
        pane.setSelectedIndex(count-1);
 
        //Read in text from the file to the tab
-       list.addFile(file);
-       System.out.print(list.getList());
+
     }
 
     @Override

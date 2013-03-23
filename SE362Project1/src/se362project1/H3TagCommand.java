@@ -10,20 +10,29 @@ package se362project1;
 
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JViewport;
 import javax.swing.text.BadLocationException;
 
 public class H3TagCommand extends JMenuItem implements Command {
 
-    private JEditorPane text;
+    private JEditorPane pane;
+    private JTabbedPane text;
 
-    public H3TagCommand(JEditorPane text) {
+    public H3TagCommand(JTabbedPane text) {
         this.text = text;
     }
 
     @Override
     public void execute() {
+        
+        JScrollPane scroll = (JScrollPane) text.getComponentAt(text.getSelectedIndex());
+        JViewport view = (JViewport) scroll.getViewport();
+        pane = (JEditorPane) view.getComponent(0);
+        
         try {
-            text.getDocument().insertString(text.getCaretPosition(), "<h3></h3>", null);
+            pane.getDocument().insertString(pane.getCaretPosition(), "<h3></h3>", null);
         } catch (BadLocationException ex) {
             System.out.print("NULL");
         }

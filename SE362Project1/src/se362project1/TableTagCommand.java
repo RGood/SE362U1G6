@@ -16,7 +16,8 @@ import javax.swing.text.BadLocationException;
 
 public class TableTagCommand extends JMenuItem implements Command, ActionListener {
 
-    private JEditorPane text;
+    private JEditorPane pane;
+    private JTabbedPane text;
     private JButton confirm;
     private JButton cancel;
     private JTextField rows;
@@ -26,7 +27,7 @@ public class TableTagCommand extends JMenuItem implements Command, ActionListene
     private JLabel colLabel;
     private JLabel rowLabel;
 
-    public TableTagCommand(JEditorPane text) {
+    public TableTagCommand(JTabbedPane text) {
         this.text = text;
     }
 
@@ -62,6 +63,10 @@ public class TableTagCommand extends JMenuItem implements Command, ActionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        JScrollPane scroll = (JScrollPane) text.getComponentAt(text.getSelectedIndex());
+        JViewport view = (JViewport) scroll.getViewport();
+        pane = (JEditorPane) view.getComponent(0);
 
         try {
             if (e.getSource().equals(confirm)) {
@@ -70,21 +75,21 @@ public class TableTagCommand extends JMenuItem implements Command, ActionListene
             int colNum = Integer.parseInt(cols.getText());
             
 
-            text.getDocument().insertString(text.getCaretPosition(),"\n<table>", null);  
+            pane.getDocument().insertString(pane.getCaretPosition(),"\n<table>", null);  
 
             for (int i = 0; i < rowNum; i++) {
 
-                text.getDocument().insertString(text.getCaretPosition(),"\n    <tr>", null);    
+                pane.getDocument().insertString(pane.getCaretPosition(),"\n    <tr>", null);    
                 
                 for (int s = 0; s < colNum; s++) {
-                    text.getDocument().insertString(text.getCaretPosition(),"\n        <td></td>", null);   
+                    pane.getDocument().insertString(pane.getCaretPosition(),"\n        <td></td>", null);   
                 }
 
-                text.getDocument().insertString(text.getCaretPosition(),"\n    </tr>", null);   
+                pane.getDocument().insertString(pane.getCaretPosition(),"\n    </tr>", null);   
 
             }
 
-            text.getDocument().insertString(text.getCaretPosition(),"\n</table>", null);   
+            pane.getDocument().insertString(pane.getCaretPosition(),"\n</table>", null);   
 
         } else if (e.getSource().equals(cancel)) {
 

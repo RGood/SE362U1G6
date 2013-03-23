@@ -11,30 +11,39 @@ package se362project1;
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JViewport;
 import javax.swing.text.BadLocationException;
 
 public class OrderedListCommand extends JMenuItem implements Command {
 
-    private JEditorPane text;
+    private JEditorPane pane;
+    private JTabbedPane text;
 
-    public OrderedListCommand(JEditorPane text) {
+    public OrderedListCommand(JTabbedPane text) {
         this.text = text;
     }
 
     @Override
     public void execute() {
+        
+        JScrollPane scroll = (JScrollPane) text.getComponentAt(text.getSelectedIndex());
+        JViewport view = (JViewport) scroll.getViewport();
+        pane = (JEditorPane) view.getComponent(0);
+        
         String str = JOptionPane.showInputDialog(null,
                 "Enter the ammount of items for the list");
         int num = Integer.parseInt(str);
 
         try {
-            text.getDocument().insertString(text.getCaretPosition(), "<ol>", null);
+            pane.getDocument().insertString(pane.getCaretPosition(), "<ol>", null);
 
             for (int i = 0; i < num; i++) {
-                text.getDocument().insertString(text.getCaretPosition(), "\n    <li></li>", null);
+                pane.getDocument().insertString(pane.getCaretPosition(), "\n    <li></li>", null);
             }
 
-            text.getDocument().insertString(text.getCaretPosition(), "</ol>", null);
+            pane.getDocument().insertString(pane.getCaretPosition(), "</ol>", null);
         } catch (BadLocationException ex) {
             System.out.print("NULL");
         }

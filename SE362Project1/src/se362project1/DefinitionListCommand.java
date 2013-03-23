@@ -11,16 +11,21 @@ package se362project1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JViewport;
+import javax.swing.text.BadLocationException;
 
 public class DefinitionListCommand extends JMenuItem implements Command, ActionListener {
 
-    private JTextArea text;
+    private JTabbedPane text;
     private JButton confirm;
     private JButton cancel;
     private JTextField rows;
@@ -29,8 +34,9 @@ public class DefinitionListCommand extends JMenuItem implements Command, ActionL
     private JPanel panel;
     private JLabel defLabel;
     private JLabel termLabel;
+    private JEditorPane pane;
 
-    public DefinitionListCommand(JTextArea text) {
+    public DefinitionListCommand(JTabbedPane text) {
         this.text = text;
     }
 
@@ -67,37 +73,48 @@ public class DefinitionListCommand extends JMenuItem implements Command, ActionL
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource().equals(confirm)) {
+        JScrollPane scroll = (JScrollPane) text.getComponentAt(text.getSelectedIndex());
+        JViewport view = (JViewport) scroll.getViewport();
+        pane = (JEditorPane) view.getComponent(0);
 
-            int rowNum = Integer.parseInt(rows.getText());
-            int colNum = Integer.parseInt(cols.getText());
+        try {
 
-            text.insert("\n<dl>", text.getCaretPosition());
+            if (e.getSource().equals(confirm)) {
 
-            while (rowNum > 0) {
-                text.insert("\n    <dt></dt>", text.getCaretPosition());
+                int rowNum = Integer.parseInt(rows.getText());
+                int colNum = Integer.parseInt(cols.getText());
+
+                pane.getDocument().insertString(pane.getCaretPosition(), "\n<dl>", null);
+
+                while (rowNum > 0) {
+                    pane.getDocument().insertString(pane.getCaretPosition(), "\n    <dt></dt>", null);
+                    if (colNum > 0) {
+                        pane.getDocument().insertString(pane.getCaretPosition(), "\n    <dd></dd>", null);
+                        colNum--;
+                    }
+
+                    rowNum--;
+                }
+
                 if (colNum > 0) {
-                    text.insert("\n    <dd></dd>", text.getCaretPosition());
-                    colNum--;
+
+                    while (colNum > 0) {
+                        pane.getDocument().insertString(pane.getCaretPosition(), "\n    <dd></dd>", null);
+                        colNum--;
+                    }
                 }
 
-                rowNum--;
+
+                pane.getDocument().insertString(pane.getCaretPosition(), "\n</dl>", null);
+
+            } else if (e.getSource().equals(cancel)) {
+
+                frame.dispose();
             }
 
-            if (colNum > 0) {
-
-                while (colNum > 0) {
-                    text.insert("\n    <dd></dd>", text.getCaretPosition());
-                    colNum--;
-                }
-            }
-
-
-            text.insert("\n</dl>", text.getCaretPosition());
-
-        } else if (e.getSource().equals(cancel)) {
-
-            frame.dispose();
+        } catch (BadLocationException ex) {
+            System.out.print("NULL");
         }
+
     }
 }
