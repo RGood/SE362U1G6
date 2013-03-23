@@ -12,8 +12,9 @@ import java.awt.event.KeyListener;
  * @author grantstacey
  */
 public class Shortcuts implements KeyListener {
-    public Shortcuts(){
-        
+    Editor editor;
+    public Shortcuts(Editor e){
+        editor = e;
     }
 
     @Override
