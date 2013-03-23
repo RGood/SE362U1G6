@@ -26,6 +26,7 @@ public class Shortcuts implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         if(e.isControlDown()){
+            System.out.println(key);
             if(key == 83){
                 if(!editor.getCurFileName().startsWith("*untitled ")){
                     editor.save();
@@ -33,6 +34,8 @@ public class Shortcuts implements KeyListener {
                     //prompt for input
                     editor.saveAs("placeHolder");
                 }
+            }else if(key == 78){
+                editor.addTab();
             }
         }
     }

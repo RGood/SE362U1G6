@@ -72,7 +72,7 @@ public class Editor extends javax.swing.JFrame {
     public void addTab(){
         JEditorPane editorPane = new JEditorPane();
         editorPane.addKeyListener(new Shortcuts(this));
-        jTabbedPane3.addTab("*untitled "+buffers.size()+1+"*", editorPane);
+        jTabbedPane3.addTab("*untitled "+(buffers.size()+1)+"*", editorPane);
         buffers.add(new HTMLBuffer());
     }
     
