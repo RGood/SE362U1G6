@@ -24,6 +24,18 @@ public class Shortcuts implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("key pressed");
+        char key = e.getKeyChar();
+        if(e.isControlDown()){
+            if(key == 's'){
+                if(!editor.getCurFileName().startsWith("*untitled ")){
+                    editor.save();
+                }else{
+                    //prompt for input
+                    editor.saveAs("placeHolder");
+                }
+            }
+        }
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

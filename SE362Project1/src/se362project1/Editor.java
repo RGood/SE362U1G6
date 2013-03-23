@@ -64,6 +64,11 @@ public class Editor extends javax.swing.JFrame {
         }
     }
     
+    public String getCurFileName(){
+        int index = jTabbedPane3.getSelectedIndex();
+        return buffers.get(index).getFileName();
+    }
+    
     public void addTab(){
         JEditorPane editorPane = new JEditorPane();
         jTabbedPane3.addTab("*untitled "+buffers.size()+1+"*", editorPane);
@@ -175,6 +180,7 @@ public class Editor extends javax.swing.JFrame {
                 editor.setSize(xSize,ySize);  
                 editor.setVisible(true);
                 editor.addTab();
+                Shortcuts s = new Shortcuts(editor);
             }
             
         });
