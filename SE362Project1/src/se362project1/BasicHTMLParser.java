@@ -28,7 +28,6 @@ public class BasicHTMLParser implements FormatCheck {
         }catch(Throwable e){
             return false;
         }
-        
         return true;
     }
     
