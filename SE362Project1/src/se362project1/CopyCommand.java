@@ -12,9 +12,7 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JViewport;
 
 
 public class CopyCommand extends JMenuItem implements Command {
@@ -28,9 +26,7 @@ public class CopyCommand extends JMenuItem implements Command {
 
     @Override
     public void execute() {
-        JScrollPane scroll = (JScrollPane) text.getComponentAt(text.getSelectedIndex());
-        JViewport view = (JViewport) scroll.getViewport();
-        pane = (JEditorPane) view.getComponent(0);
+        pane = (JEditorPane)text.getSelectedComponent();
         StringSelection selection = new StringSelection(pane.getSelectedText());
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(selection, selection);

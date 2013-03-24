@@ -10,9 +10,7 @@ package se362project1;
 
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JViewport;
 import javax.swing.text.BadLocationException;
 
 public class H5TagCommand extends JMenuItem implements Command {
@@ -26,9 +24,7 @@ public class H5TagCommand extends JMenuItem implements Command {
 
     @Override
     public void execute() {
-        JScrollPane scroll = (JScrollPane) text.getComponentAt(text.getSelectedIndex());
-        JViewport view = (JViewport) scroll.getViewport();
-        pane = (JEditorPane) view.getComponent(0);
+       pane = (JEditorPane)text.getSelectedComponent();
         
         try {
             pane.getDocument().insertString(pane.getCaretPosition(), "<h5></h5>", null);

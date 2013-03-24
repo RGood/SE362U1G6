@@ -5,6 +5,8 @@
 package se362project1;
 
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,7 +19,7 @@ import javax.swing.JEditorPane;
  *
  * @author Randy
  */
-public class Editor extends javax.swing.JFrame {
+public class Editor extends javax.swing.JFrame implements ActionListener {
     ArrayList<HTMLBuffer> buffers = new ArrayList<HTMLBuffer>();
     FormatCheck checker = new BasicHTMLParser();
     /**
@@ -118,6 +120,17 @@ public class Editor extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new BoldCommand(jTabbedPane3);
+        jMenuItem2 = new ItalicCommand(jTabbedPane3);
+        jMenuItem3 = new H1TagCommand(jTabbedPane3);
+        jMenuItem4 = new H2TagCommand(jTabbedPane3);
+        jMenuItem5 = new H3TagCommand(jTabbedPane3);
+        jMenuItem6 = new H4TagCommand(jTabbedPane3);
+        jMenuItem7 = new H5TagCommand(jTabbedPane3);
+        jMenuItem8 = new H6TagCommand(jTabbedPane3);
+        jMenuItem9 = new OrderedListCommand(jTabbedPane3);
+        jMenuItem10 = new UnorderedListCommand(jTabbedPane3);
+        jMenuItem11 = new DefinitionListCommand(jTabbedPane3);
+        jMenuItem12 = new TableTagCommand(jTabbedPane3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -132,12 +145,52 @@ public class Editor extends javax.swing.JFrame {
         jMenu3.setText("HTML");
 
         jMenuItem1.setText("Bold");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
         jMenu3.add(jMenuItem1);
+        jMenuItem1.addActionListener(this);
+
+        jMenuItem2.setText("Italic");
+        jMenu3.add(jMenuItem2);
+        jMenuItem2.addActionListener(this);
+
+        jMenuItem3.setText("H1");
+        jMenu3.add(jMenuItem3);
+        jMenuItem3.addActionListener(this);
+
+        jMenuItem4.setText("H2");
+        jMenu3.add(jMenuItem4);
+        jMenuItem4.addActionListener(this);
+
+        jMenuItem5.setText("H3");
+        jMenu3.add(jMenuItem5);
+        jMenuItem4.addActionListener(this);
+
+        jMenuItem6.setText("H4");
+        jMenu3.add(jMenuItem6);
+        jMenuItem6.addActionListener(this);
+
+        jMenuItem7.setText("H5");
+        jMenu3.add(jMenuItem7);
+        jMenuItem7.addActionListener(this);
+
+        jMenuItem8.setText("H6");
+        jMenu3.add(jMenuItem8);
+        jMenuItem8.addActionListener(this);
+
+        jMenuItem9.setText("Ordered List");
+        jMenu3.add(jMenuItem9);
+        jMenuItem9.addActionListener(this);
+
+        jMenuItem10.setText("UnOrdered List");
+        jMenu3.add(jMenuItem10);
+        jMenuItem10.addActionListener(this);
+
+        jMenuItem11.setText("Definition List");
+        jMenu3.add(jMenuItem11);
+        jMenuItem11.addActionListener(this);
+
+        jMenuItem12.setText("Table");
+        jMenu3.add(jMenuItem12);
+        jMenuItem12.addActionListener(this);
 
         jMenuBar1.add(jMenu3);
 
@@ -156,15 +209,6 @@ public class Editor extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        
-        CommandControl control = new CommandControl();
-        Command command = (Command)evt.getSource();
-        control.setCommand(command);
-        control.pressButton();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,7 +263,26 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        CommandControl control = new CommandControl();
+        Command command = (Command)e.getSource();
+        control.setCommand(command);
+        control.pressButton();
+    }
 }

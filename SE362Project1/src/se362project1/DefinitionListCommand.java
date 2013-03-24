@@ -16,11 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JViewport;
 import javax.swing.text.BadLocationException;
 
 public class DefinitionListCommand extends JMenuItem implements Command, ActionListener {
@@ -73,10 +70,8 @@ public class DefinitionListCommand extends JMenuItem implements Command, ActionL
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        JScrollPane scroll = (JScrollPane) text.getComponentAt(text.getSelectedIndex());
-        JViewport view = (JViewport) scroll.getViewport();
-        pane = (JEditorPane) view.getComponent(0);
-
+        pane = (JEditorPane)text.getSelectedComponent();
+        
         try {
 
             if (e.getSource().equals(confirm)) {

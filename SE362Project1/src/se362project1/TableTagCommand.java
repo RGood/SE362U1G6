@@ -10,7 +10,6 @@ package se362project1;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
 
@@ -64,9 +63,7 @@ public class TableTagCommand extends JMenuItem implements Command, ActionListene
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        JScrollPane scroll = (JScrollPane) text.getComponentAt(text.getSelectedIndex());
-        JViewport view = (JViewport) scroll.getViewport();
-        pane = (JEditorPane) view.getComponent(0);
+       pane = (JEditorPane)text.getSelectedComponent();
 
         try {
             if (e.getSource().equals(confirm)) {
