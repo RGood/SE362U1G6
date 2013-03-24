@@ -17,19 +17,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
+import javax.swing.JTabbedPane;
 import javax.swing.text.BadLocationException;
 
 public class PasteCommand extends JMenuItem implements Command {
 
-    private JEditorPane text;
+    private JTabbedPane text;
+    private JEditorPane pane;
     private String copyText = " ";
 
-    public PasteCommand(JEditorPane text) {
+    public PasteCommand(JTabbedPane text) {
         this.text = text;
     }
 
     @Override
     public void execute() {
+        pane = (JEditorPane)text.getSelectedComponent();
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         Transferable contents = clipboard.getContents(null);
 
@@ -41,7 +44,7 @@ public class PasteCommand extends JMenuItem implements Command {
             e.printStackTrace();
         }
         try {
-            text.getDocument().insertString(text.getCaretPosition(), copyText, null);   
+            pane.getDocument().insertString(pane.getCaretPosition(), copyText, null);   
         } catch (BadLocationException ex) {
             Logger.getLogger(PasteCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
