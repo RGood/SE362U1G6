@@ -33,7 +33,7 @@ public class OrderedListCommand extends JMenuItem implements Command {
         int num = Integer.parseInt(str);
 
         try {
-            pane.getDocument().insertString(pane.getCaretPosition(), "<ol>", null);
+            pane.getDocument().insertString(pane.getCaretPosition(), "\n<ol>", null);
 
             for (int i = 0; i < num; i++) {
                 pane.getDocument().insertString(pane.getCaretPosition(), "\n    <li></li>", null);

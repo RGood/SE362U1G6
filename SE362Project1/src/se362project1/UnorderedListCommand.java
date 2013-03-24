@@ -33,7 +33,7 @@ public class UnorderedListCommand extends JMenuItem implements Command {
         int num = Integer.parseInt(str);
 
         try {
-            pane.getDocument().insertString(pane.getCaretPosition(), "<ul>", null);
+            pane.getDocument().insertString(pane.getCaretPosition(), "\n<ul>", null);
 
             for (int i = 0; i < num; i++) {
                 pane.getDocument().insertString(pane.getCaretPosition(), "\n    <li></li>", null);

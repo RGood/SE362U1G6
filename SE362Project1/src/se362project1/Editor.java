@@ -121,6 +121,8 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jMenuItem13 = new CopyCommand(jTabbedPane3);
         jMenuItem14 = new CutCommand(jTabbedPane3);
         jMenuItem15 = new PasteCommand(jTabbedPane3);
+        jMenuItem16 = new SelectAllCommand(jTabbedPane3);
+        jMenuItem17 = new IndentCommand(jTabbedPane3);
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new BoldCommand(jTabbedPane3);
         jMenuItem2 = new ItalicCommand(jTabbedPane3);
@@ -155,6 +157,14 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jMenuItem15.setText("Paste");
         jMenu2.add(jMenuItem15);
         jMenuItem15.addActionListener(this);
+
+        jMenuItem16.setText("Select All");
+        jMenu2.add(jMenuItem16);
+        jMenuItem16.addActionListener(this);
+
+        jMenuItem17.setText("Indent");
+        jMenu2.add(jMenuItem17);
+        jMenuItem17.addActionListener(this);
 
         jMenuBar1.add(jMenu2);
 
@@ -285,6 +295,8 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
