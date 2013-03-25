@@ -78,14 +78,12 @@ public class HTMLBuffer implements KeyListener{
     @Override
     public void keyTyped(KeyEvent e) {
         //Save a key into the buffer
-        if((!e.isActionKey())&&(!e.isControlDown())){
-            buffer = pane.getText();
-        }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        buffer = pane.getText();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

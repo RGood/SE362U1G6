@@ -43,12 +43,14 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     public void save(){
         HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1];
         buf.save();
+        jTabbedPane3.setTitleAt(jTabbedPane3.getSelectedIndex(), buf.getFileName());
     }
     
     public void saveAs(String fileName){
         HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1];
         buf.setFileName(fileName);
         buf.save();
+        jTabbedPane3.setTitleAt(jTabbedPane3.getSelectedIndex(), buf.getFileName());
     }
     
     public void closeCur(){
