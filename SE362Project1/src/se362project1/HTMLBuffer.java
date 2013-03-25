@@ -4,6 +4,8 @@
  */
 package se362project1;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,7 +15,7 @@ import java.io.IOException;
  *
  * @author Randy
  */
-public class HTMLBuffer {
+public class HTMLBuffer implements KeyListener{
     String buffer;
     String fileName;
     
@@ -52,7 +54,6 @@ public class HTMLBuffer {
             outFile.write(buffer);
             outFile.close();
         } catch (IOException ex) {
-            ex.printStackTrace();
             return false;
         }
         return true;
@@ -68,5 +69,21 @@ public class HTMLBuffer {
     
     public String getText(){
         return buffer;
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        //Save a key into the buffer
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

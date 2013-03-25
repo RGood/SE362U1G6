@@ -26,8 +26,9 @@ public class Shortcuts implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+        //System.out.println(key);
         if(e.isControlDown()){
-            System.out.println(key);
+            //System.out.println(key);
             if(key == 83){
                 if(!editor.getCurFileName().equals("")){
                     editor.save();
