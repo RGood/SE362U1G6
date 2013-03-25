@@ -27,10 +27,11 @@ public class SaveCommand extends JMenuItem implements Command {
     public void execute() {
        choose.showSaveDialog(null);
        file = choose.getSelectedFile();
+
     }
     
     public String getFile(){
-        return file.getPath();
+        return file.getPath() + ".html";
     }
 
     @Override

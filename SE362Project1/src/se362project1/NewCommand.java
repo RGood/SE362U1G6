@@ -17,7 +17,7 @@ public class NewCommand extends JMenuItem implements Command{
 
     private JTabbedPane pane;
 
-    public NewCommand(JTabbedPane pane){
+    public NewCommand(){
         this.pane = pane;
     }
 

@@ -18,7 +18,6 @@ import javax.swing.JTabbedPane;
 public class CloseCommand extends JMenuItem implements Command{
 
     private JList list;
-    private CurrentFileList filelist;
     private JTabbedPane pane;
 
     public CloseCommand(JTabbedPane pane){
@@ -33,8 +32,6 @@ public class CloseCommand extends JMenuItem implements Command{
         if(selected != null){
             pane.remove(selected);
         }
-        //File file = filelist.getList().get(list.getSelectedIndex());
-        //filelist.getList().remove(file);
     }
 
     public void undo() {

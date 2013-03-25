@@ -128,6 +128,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         Save = new javax.swing.JMenuItem();
         SaveAs = new javax.swing.JMenuItem();
         Close = new javax.swing.JMenuItem();
+        New = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem13 = new CopyCommand(jTabbedPane3);
         jMenuItem14 = new CutCommand(jTabbedPane3);
@@ -155,11 +156,6 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jMenu1.setText("File");
 
         Open.setText("Open");
-        Open.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OpenActionPerformed(evt);
-            }
-        });
         jMenu1.add(Open);
         Open.addActionListener(this);
 
@@ -168,22 +164,16 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         Save.addActionListener(this);
 
         SaveAs.setText("Save As");
-        SaveAs.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SaveAsActionPerformed(evt);
-            }
-        });
         jMenu1.add(SaveAs);
         SaveAs.addActionListener(this);
 
         Close.setText("Close");
-        Close.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CloseActionPerformed(evt);
-            }
-        });
         jMenu1.add(Close);
         Close.addActionListener(this);
+
+        New.setText("New ");
+        jMenu1.add(New);
+        New.addActionListener(this);
 
         jMenuBar1.add(jMenu1);
 
@@ -279,18 +269,6 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_OpenActionPerformed
-
-    private void SaveAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SaveAsActionPerformed
-
-    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CloseActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -340,6 +318,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Close;
+    private javax.swing.JMenuItem New;
     private javax.swing.JMenuItem Open;
     private javax.swing.JMenuItem Save;
     private javax.swing.JMenuItem SaveAs;
@@ -385,6 +364,9 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         }
         else if(e.getSource().equals(Close)){
             closeCur();
+        }
+        else if(e.getSource().equals(New)){
+            addTab();
         }
         else{
         
