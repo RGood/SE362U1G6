@@ -33,7 +33,7 @@ public class HTMLBuffer {
     }
     
     public void setFileName(String name){
-        fileName = "";
+        fileName = name;
     }
     
     public String getFileName(){

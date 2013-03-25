@@ -50,7 +50,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         int index = jTabbedPane3.getSelectedIndex();
         System.out.println(index);
         buffers.get(index).setFileName(fileName);
-        System.out.println(fileName);
+        System.out.println(buffers.get(index).getFileName());
         buffers.get(index).save();
         
     }
