@@ -43,6 +43,7 @@ public class HTMLBuffer {
     public boolean save(){
         try {
             File saveFile = new File(fileName);
+            //System.out.println(saveFile.getAbsolutePath());
             if(!saveFile.exists()){
                 saveFile.createNewFile();
             }
