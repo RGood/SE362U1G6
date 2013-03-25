@@ -124,6 +124,10 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        Open = new javax.swing.JMenuItem();
+        Save = new javax.swing.JMenuItem();
+        SaveAs = new javax.swing.JMenuItem();
+        Close = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem13 = new CopyCommand(jTabbedPane3);
         jMenuItem14 = new CutCommand(jTabbedPane3);
@@ -149,6 +153,38 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jTabbedPane3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jMenu1.setText("File");
+
+        Open.setText("Open");
+        Open.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpenActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Open);
+        Open.addActionListener(this);
+
+        Save.setText("Save");
+        jMenu1.add(Save);
+        Save.addActionListener(this);
+
+        SaveAs.setText("Save As");
+        SaveAs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveAsActionPerformed(evt);
+            }
+        });
+        jMenu1.add(SaveAs);
+        SaveAs.addActionListener(this);
+
+        Close.setText("Close");
+        Close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CloseActionPerformed(evt);
+            }
+        });
+        jMenu1.add(Close);
+        Close.addActionListener(this);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -243,6 +279,18 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OpenActionPerformed
+
+    private void SaveAsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SaveAsActionPerformed
+
+    private void CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CloseActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -291,6 +339,10 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Close;
+    private javax.swing.JMenuItem Open;
+    private javax.swing.JMenuItem Save;
+    private javax.swing.JMenuItem SaveAs;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -318,9 +370,28 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        CommandControl control = new CommandControl();
-        Command command = (Command)e.getSource();
-        control.setCommand(command);
-        control.pressButton();
+         if(e.getSource().equals(Open)){
+            OpenCommand com = new OpenCommand();
+            com.execute();
+            openTab(com.getFile());
+        }
+        else if(e.getSource().equals(Save)){
+            save();
+        }
+        else if(e.getSource().equals(SaveAs)){
+            SaveCommand com = new SaveCommand();
+            com.execute();
+            saveAs(com.getFile());
+        }
+        else if(e.getSource().equals(Close)){
+            closeCur();
+        }
+        else{
+        
+            CommandControl control = new CommandControl();
+            Command command = (Command)e.getSource();
+            control.setCommand(command);
+            control.pressButton();
+        }
     }
 }
