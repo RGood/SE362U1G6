@@ -79,7 +79,6 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     public boolean openTab(String filename){
         File inFile = new File(filename);
         JEditorPane newPane = new JEditorPane();
-        jTabbedPane3.addTab("*untitled "+(jTabbedPane3.getTabCount()+1)+"*", newPane);
         HTMLBuffer newBuff = new HTMLBuffer(newPane,filename);
         if(!inFile.exists()){
             return false;
@@ -96,6 +95,8 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         }
         newPane.addKeyListener(new Shortcuts(this));
         newPane.addKeyListener(newBuff);
+        newPane.setText(newBuff.getText());
+        jTabbedPane3.addTab(newBuff.getFileName(), newPane);
         
         return true;
     }

@@ -42,8 +42,19 @@ public class HTMLBuffer implements KeyListener{
         fileName = name;
     }
     
+    public String getFullPath(){
+        File pathFile = new File(fileName);
+        return pathFile.getAbsolutePath();
+    }
+    
     public String getFileName(){
-        return fileName;
+        if(fileName.contains("\\")){
+            return fileName.substring(fileName.lastIndexOf("\\"));
+        }else if(fileName.contains("/")){
+            return fileName.substring(fileName.lastIndexOf("/"));
+        }else{
+            return fileName;
+        }
     }
     
     public boolean save(){
