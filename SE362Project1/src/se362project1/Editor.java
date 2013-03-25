@@ -54,7 +54,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     }
     
     public void closeCur(){
-        if(this.tabsOpen()>=1){
+        if(this.tabsOpen()<=1){
             this.dispose();
         }
         int index = jTabbedPane3.getSelectedIndex();
@@ -62,7 +62,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     }
     
     public void closeAt(int index){
-        if(this.tabsOpen()>=1){
+        if(this.tabsOpen()<=1){
             this.dispose();
         }
         if(index<jTabbedPane3.getTabCount()){
