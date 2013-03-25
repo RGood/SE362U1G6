@@ -74,6 +74,11 @@ public class HTMLBuffer implements KeyListener{
     @Override
     public void keyTyped(KeyEvent e) {
         //Save a key into the buffer
+        if(e.getKeyCode()!=8){
+            buffer +=e.getKeyChar();
+        }else{
+            buffer = buffer.substring(0,buffer.length()-2);
+        }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

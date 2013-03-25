@@ -20,7 +20,6 @@ import javax.swing.JEditorPane;
  * @author Randy
  */
 public class Editor extends javax.swing.JFrame implements ActionListener {
-    ArrayList<HTMLBuffer> buffers = new ArrayList<HTMLBuffer>();
     FormatCheck checker = new BasicHTMLParser();
     /**
      * Creates new form Editor
@@ -30,54 +29,50 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     }
     
     public boolean check(){
-        int index = jTabbedPane3.getSelectedIndex();
-        return checker.Check(buffers.get(index));
+        HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1];
+        return checker.Check(buf);
     }
     
     public boolean checkAt(int index){
-        if (index<buffers.size()){
-            return checker.Check(buffers.get(index));
+        if (index<jTabbedPane3.getTabCount()){
+            HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getComponentAt(index).getKeyListeners()[1];
+            return checker.Check(buf);
         }
         return false;
     }
     
     public void save(){
-        int index = jTabbedPane3.getSelectedIndex();
-        buffers.get(index).save();
+        HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1];
+        buf.save();
     }
     
     public void saveAs(String fileName){
-        int index = jTabbedPane3.getSelectedIndex();
-        System.out.println(index);
-        buffers.get(index).setFileName(fileName);
-        System.out.println(buffers.get(index).getFileName());
-        buffers.get(index).save();
-        
+        HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1];
+        buf.setFileName(fileName);
+        buf.save();
     }
     
     public void closeCur(){
         int index = jTabbedPane3.getSelectedIndex();
         jTabbedPane3.remove(index);
-        buffers.remove(index);
     }
     
     public void closeAt(int index){
-        if(index<buffers.size()){
+        if(index<jTabbedPane3.getTabCount()){
             jTabbedPane3.remove(index);
-            buffers.remove(index);
         }
     }
     
     public String getCurFileName(){
-        int index = jTabbedPane3.getSelectedIndex();
-        return buffers.get(index).getFileName();
+        HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1];
+        return buf.getFileName();
     }
     
     public void addTab(){
         JEditorPane editorPane = new JEditorPane();
         editorPane.addKeyListener(new Shortcuts(this));
-        jTabbedPane3.addTab("*untitled "+(buffers.size()+1)+"*", editorPane);
-        buffers.add(new HTMLBuffer());
+        editorPane.addKeyListener(new HTMLBuffer());
+        jTabbedPane3.addTab("*untitled "+(jTabbedPane3.getTabCount()+1)+"*", editorPane);
     }
     
     public boolean openTab(String filename){
@@ -97,9 +92,9 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
             return false;
         }
         JEditorPane newPane = new JEditorPane();
-        jTabbedPane3.addTab("*untitled "+buffers.size()+1+"*", newPane);
+        jTabbedPane3.addTab("*untitled "+(jTabbedPane3.getTabCount()+1)+"*", newPane);
         newPane.addKeyListener(new Shortcuts(this));
-        buffers.add(newBuff);
+        newPane.addKeyListener(newBuff);
         
         return true;
     }
