@@ -69,6 +69,10 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         return buf.getFileName();
     }
     
+    public int tabsOpen(){
+        return jTabbedPane3.getTabCount();
+    }
+    
     public void addTab(){
         JEditorPane editorPane = new JEditorPane();
         editorPane.addKeyListener(new Shortcuts(this));

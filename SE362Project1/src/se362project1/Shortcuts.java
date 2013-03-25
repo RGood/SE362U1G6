@@ -39,6 +39,9 @@ public class Shortcuts implements KeyListener {
             }else if(key == 78){
                 editor.addTab();
             }else if(key == 87){
+                if(editor.tabsOpen()>=1){
+                    editor.dispose();
+                }
                 editor.closeCur();
             }
         }
