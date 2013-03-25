@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.swing.JEditorPane;
 
 /**
@@ -71,13 +70,15 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     public void addTab(){
         JEditorPane editorPane = new JEditorPane();
         editorPane.addKeyListener(new Shortcuts(this));
-        editorPane.addKeyListener(new HTMLBuffer());
+        editorPane.addKeyListener(new HTMLBuffer(editorPane));
         jTabbedPane3.addTab("*untitled "+(jTabbedPane3.getTabCount()+1)+"*", editorPane);
     }
     
     public boolean openTab(String filename){
         File inFile = new File(filename);
-        HTMLBuffer newBuff = new HTMLBuffer(filename);
+        JEditorPane newPane = new JEditorPane();
+        jTabbedPane3.addTab("*untitled "+(jTabbedPane3.getTabCount()+1)+"*", newPane);
+        HTMLBuffer newBuff = new HTMLBuffer(newPane,filename);
         if(!inFile.exists()){
             return false;
         }
@@ -91,8 +92,6 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         } catch (IOException ex) {
             return false;
         }
-        JEditorPane newPane = new JEditorPane();
-        jTabbedPane3.addTab("*untitled "+(jTabbedPane3.getTabCount()+1)+"*", newPane);
         newPane.addKeyListener(new Shortcuts(this));
         newPane.addKeyListener(newBuff);
         
