@@ -25,8 +25,8 @@ public class SaveCommand extends JMenuItem implements Command {
 
     @Override
     public void execute() {
-       choose.showSaveDialog(null);
-       file = choose.getSelectedFile();
+        choose.showSaveDialog(null);
+        file = choose.getSelectedFile();
 
     }
     

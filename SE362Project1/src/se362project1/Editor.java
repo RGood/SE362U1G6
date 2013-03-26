@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JEditorPane;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -355,9 +356,27 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
             openTab(com.getFile());
         }
         else if(e.getSource().equals(Save)){
+            if(check() == false){
+                Object[] options = {"Yes, save.", "No, don't save."};
+                int n = JOptionPane.showOptionDialog(this, "The file is in an improper format. Save anyway?", 
+                        "Unsuccessful Check", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+                        null, options, options[0]);
+                if(n == 1){
+                    return;
+                }
+            }
             save();
         }
         else if(e.getSource().equals(SaveAs)){
+            if(check() == false){
+                Object[] options = {"Yes, save.", "No, don't save."};
+                int n = JOptionPane.showOptionDialog(this, "The file is in an improper format. Save anyway?", 
+                        "Unsuccessful Check", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+                        null, options, options[0]);
+                if(n == 1){
+                    return;
+                }
+            }
             SaveCommand com = new SaveCommand();
             com.execute();
             saveAs(com.getFile());
