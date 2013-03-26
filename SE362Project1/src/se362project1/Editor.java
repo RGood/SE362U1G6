@@ -98,7 +98,6 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
             while(buff.ready()){
                 newBuff.appendLine(buff.readLine()+"\n");
             }
-            newBuff.update(newBuff.getText().substring(0,newBuff.getText().length()-2));
         } catch (FileNotFoundException ex) {
             return false;
         } catch (IOException ex) {
