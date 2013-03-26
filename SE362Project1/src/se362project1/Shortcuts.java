@@ -35,7 +35,9 @@ public class Shortcuts implements KeyListener {
                     editor.save();
                 }else{
                     //prompt for input
-                    editor.saveAs("placeHolder");
+                    SaveCommand com = new SaveCommand();
+                    com.execute();
+                    editor.saveAs(com.getFile());
                 }
             }else if(key == 78){
                 editor.addTab();
@@ -48,7 +50,9 @@ public class Shortcuts implements KeyListener {
                     JOptionPane.showMessageDialog(editor, "Check unsuccessful.");
                 }
             }else if(key == 79){
-                editor.openTab("placeHolder");
+                OpenCommand com = new OpenCommand();
+                com.execute();
+                editor.openTab(com.getFile());
             }
         }
     }
