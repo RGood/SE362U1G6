@@ -8,6 +8,7 @@
 package se362project1;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import org.w3c.tidy.*;
 
 /**
@@ -22,9 +23,13 @@ public class BasicHTMLParser implements FormatCheck {
         tidy.setXHTML(true);
         ByteArrayInputStream bais =
             new ByteArrayInputStream(x.getText().getBytes());
+        ByteArrayOutputStream bOut = new ByteArrayOutputStream();
         
         try{
-            tidy.parseDOM(bais, null);
+            tidy.parseDOM(bais, bOut);
+            if(tidy.getParseWarnings()>0 || tidy.getParseErrors()>0){
+                return false;
+            }
         }catch(Throwable e){
             return false;
         }
