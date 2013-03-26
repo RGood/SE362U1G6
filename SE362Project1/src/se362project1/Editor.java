@@ -145,11 +145,11 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        New = new javax.swing.JMenuItem();
         Open = new javax.swing.JMenuItem();
         Save = new javax.swing.JMenuItem();
         SaveAs = new javax.swing.JMenuItem();
         Close = new javax.swing.JMenuItem();
-        New = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem13 = new CopyCommand(jTabbedPane3);
         jMenuItem14 = new CutCommand(jTabbedPane3);
@@ -176,6 +176,10 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
 
         jMenu1.setText("File");
 
+        New.setText("New ");
+        jMenu1.add(New);
+        New.addActionListener(this);
+
         Open.setText("Open");
         jMenu1.add(Open);
         Open.addActionListener(this);
@@ -191,10 +195,6 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         Close.setText("Close");
         jMenu1.add(Close);
         Close.addActionListener(this);
-
-        New.setText("New ");
-        jMenu1.add(New);
-        New.addActionListener(this);
 
         jMenuBar1.add(jMenu1);
 
