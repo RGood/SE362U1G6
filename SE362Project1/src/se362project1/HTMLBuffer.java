@@ -20,11 +20,13 @@ public class HTMLBuffer implements KeyListener{
     String buffer;
     String fileName;
     JEditorPane pane;
+    boolean changed;
     
     public HTMLBuffer(JEditorPane p){
         buffer = "";
         fileName = "";
         pane = p;
+        changed = false;
     }
     
     public HTMLBuffer(JEditorPane p,String name){
@@ -57,6 +59,10 @@ public class HTMLBuffer implements KeyListener{
         }
     }
     
+    public boolean isSaved(){
+        return !changed;
+    }
+    
     public boolean save(){
         try {
             File saveFile = new File(fileName);
@@ -71,6 +77,7 @@ public class HTMLBuffer implements KeyListener{
         } catch (IOException ex) {
             return false;
         }
+        changed = false;
         return true;
     }
     
@@ -98,6 +105,9 @@ public class HTMLBuffer implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if(changed == false){
+            changed = true;
+        }
         buffer = pane.getText();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
