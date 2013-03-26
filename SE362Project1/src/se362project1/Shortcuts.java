@@ -31,6 +31,15 @@ public class Shortcuts implements KeyListener {
         if(e.isControlDown()){
             //System.out.println(key);
             if(key == 83){
+                if(editor.check() == false){
+                    Object[] options = {"Yes, save.", "No, don't save."};
+                    int n = JOptionPane.showOptionDialog(editor, "The file is in an improper format. Save anyway?", 
+                            "Unsuccessful Check", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+                            null, options, options[0]);
+                    if(n == 1){
+                        return;
+                    }
+                }
                 if(!editor.getCurFileName().equals("")){
                     editor.save();
                 }else{
