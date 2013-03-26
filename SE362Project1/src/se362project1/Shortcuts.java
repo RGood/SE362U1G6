@@ -6,6 +6,7 @@ package se362project1;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,6 +41,14 @@ public class Shortcuts implements KeyListener {
                 editor.addTab();
             }else if(key == 87){
                 editor.closeCur();
+            }else if(key == 81){
+                if(editor.check() == true){
+                    JOptionPane.showMessageDialog(editor, "Check successful.");
+                }else{
+                    JOptionPane.showMessageDialog(editor, "Check unsuccessful.");
+                }
+            }else if(key == 79){
+                editor.openTab("placeHolder");
             }
         }
     }
