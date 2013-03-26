@@ -96,7 +96,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         try{
             BufferedReader buff = new BufferedReader(new FileReader(inFile));
             while(buff.ready()){
-                newBuff.appendLine(buff.readLine()+"\n");
+                newBuff.appendLine(buff.readLine());
             }
         } catch (FileNotFoundException ex) {
             return false;

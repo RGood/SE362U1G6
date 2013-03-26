@@ -79,7 +79,11 @@ public class HTMLBuffer implements KeyListener{
     }
     
     public void appendLine(String text){
-        buffer += (text);
+        if (buffer.equals("")){
+            buffer += (text);
+        }else{
+            buffer+= ("\n"+text);
+        }
     }
     
     public String getText(){
