@@ -26,12 +26,14 @@ public class HTMLBuffer implements KeyListener{
         buffer = "";
         fileName = "";
         pane = p;
+        bufState = buffer;
     }
     
     public HTMLBuffer(JEditorPane p,String name){
         buffer = "";
         fileName = name;
         pane = p;
+        bufState = buffer;
     }
     
     public HTMLBuffer(String name,String text){
