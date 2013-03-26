@@ -56,6 +56,16 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     
     public void closeCur(){
         if(this.tabsOpen()<=1){
+            HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getComponentAt(0).getKeyListeners()[1];
+            if (!buf.isSaved()) {
+                Object[] options = {"Yes, abort.", "No, continue."};
+                int n = JOptionPane.showOptionDialog(this, "The file " + buf.getFileName() + " is not saved. Abort termination?", 
+                        "Unsaved File", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
+                        null, options, options[0]);
+                if(n == 0){
+                    return;
+                }
+            }
             this.dispose();
         }
         int index = jTabbedPane3.getSelectedIndex();
