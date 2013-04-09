@@ -82,6 +82,16 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jTabbedPane3.remove(index);
     }
     
+    public void saveCurState(){
+        ((HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1]).saveState();
+    }
+    
+    public void undoCurState(){
+        ((HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1]).restoreState();
+        HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1];
+        ((JEditorPane)jTabbedPane3.getSelectedComponent()).setText(buf.getText());
+    }
+    
     public void closeAt(int index){
         if(this.tabsOpen()<=1){
             this.dispose();
