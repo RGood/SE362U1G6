@@ -31,4 +31,8 @@ public class MTag {
     public String getTag(){
         return tag;
     }
+    
+    public int getLine(){
+        return line;
+    }
 }
