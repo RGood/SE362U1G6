@@ -30,6 +30,7 @@ public class H2TagCommand extends JMenuItem implements Command {
         } catch (BadLocationException ex) {
             System.out.print("NULL");
         }
+        
     }
 
     @Override

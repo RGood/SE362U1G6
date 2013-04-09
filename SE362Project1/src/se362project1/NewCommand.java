@@ -16,17 +16,15 @@ import javax.swing.JTabbedPane;
 public class NewCommand extends JMenuItem implements Command{
 
     private JTabbedPane pane;
+    private Editor e;
 
-    public NewCommand(){
-        this.pane = pane;
+    public NewCommand(Editor e){
+        this.e = e;
     }
 
     @Override
     public void execute() {
-        JEditorPane text = new JEditorPane();
-        pane.addTab("untilled", text);
-        int count = pane.getTabCount();
-        pane.setSelectedIndex(count-1);
+        e.addTab();
     }
 
     @Override

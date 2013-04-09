@@ -155,21 +155,22 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        New = new javax.swing.JMenuItem();
-        Open = new javax.swing.JMenuItem();
-        Save = new javax.swing.JMenuItem();
+        New = new NewCommand(this);
+        Open = new OpenCommand(this);
+        Save = new SaveCommand(this);
         SaveAs = new javax.swing.JMenuItem();
-        Close = new javax.swing.JMenuItem();
+        Close = new CloseCommand(this);
         jMenu2 = new javax.swing.JMenu();
         jMenuItem13 = new CopyCommand(jTabbedPane3);
         jMenuItem14 = new CutCommand(jTabbedPane3);
         jMenuItem15 = new PasteCommand(jTabbedPane3);
         jMenuItem16 = new SelectAllCommand(jTabbedPane3);
         jMenuItem17 = new IndentCommand(jTabbedPane3);
+        Undo = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new BoldCommand(jTabbedPane3);
         jMenuItem2 = new ItalicCommand(jTabbedPane3);
-        jMenuItem3 = new H1TagCommand(jTabbedPane3);
+        jMenuItem3 = new H1TagCommand(jTabbedPane3, this);
         jMenuItem4 = new H2TagCommand(jTabbedPane3);
         jMenuItem5 = new H3TagCommand(jTabbedPane3);
         jMenuItem6 = new H4TagCommand(jTabbedPane3);
@@ -230,6 +231,10 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jMenu2.add(jMenuItem17);
         jMenuItem17.addActionListener(this);
 
+        Undo.setText("Undo");
+        jMenu2.add(Undo);
+        Undo.addActionListener(this);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("HTML");
@@ -252,7 +257,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
 
         jMenuItem5.setText("H3");
         jMenu3.add(jMenuItem5);
-        jMenuItem4.addActionListener(this);
+        jMenuItem5.addActionListener(this);
 
         jMenuItem6.setText("H4");
         jMenu3.add(jMenuItem6);
@@ -352,6 +357,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JMenuItem Open;
     private javax.swing.JMenuItem Save;
     private javax.swing.JMenuItem SaveAs;
+    private javax.swing.JMenuItem Undo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -377,14 +383,11 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTabbedPane jTabbedPane3;
     // End of variables declaration//GEN-END:variables
 
+    CommandControl control = new CommandControl();
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-         if(e.getSource().equals(Open)){
-            OpenCommand com = new OpenCommand();
-            com.execute();
-            openTab(com.getFile());
-        }
-        else if(e.getSource().equals(Save)){
+        if(e.getSource().equals(Save)){
             if(check() == false){
                 Object[] options = {"Yes, save.", "No, don't save."};
                 int n = JOptionPane.showOptionDialog(this, "The file is in an improper format. Save anyway?", 
@@ -410,15 +413,13 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
             com.execute();
             saveAs(com.getFile());
         }
-        else if(e.getSource().equals(Close)){
-            closeCur();
-        }
-        else if(e.getSource().equals(New)){
-            addTab();
+        else if(e.getSource().equals(Undo)){
+            undoCurState();
         }
         else{
-        
-            CommandControl control = new CommandControl();
+            JEditorPane pane = (JEditorPane)jTabbedPane3.getSelectedComponent();
+            ((HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1]).update(pane.getText());
+            saveCurState();
             Command command = (Command)e.getSource();
             control.setCommand(command);
             control.pressButton();
