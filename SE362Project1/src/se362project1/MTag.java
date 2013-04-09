@@ -11,14 +11,17 @@ package se362project1;
 public class MTag {
     private boolean open = true;
     private String tag = "";
+    private int line;
     
-    MTag(String t,boolean o){
+    MTag(String t,int l,boolean o){
         open = o;
         tag = t;
+        line = l;
     }
     
-    MTag(String t){
+    MTag(String t,int l){
         tag = t;
+        line = l;
     }
     
     public boolean isOpen(){
