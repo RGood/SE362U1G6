@@ -181,6 +181,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jMenuItem11 = new DefinitionListCommand(jTabbedPane3);
         jMenuItem12 = new TableTagCommand(jTabbedPane3);
         jMenuItem18 = new IMGcommand(jTabbedPane3);
+        jMenuItem19 = new HREFcommand(jTabbedPane3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -292,6 +293,10 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jMenu3.add(jMenuItem18);
         jMenuItem18.addActionListener(this);
 
+        jMenuItem19.setText("HREF");
+        jMenu3.add(jMenuItem19);
+        jMenuItem19.addActionListener(this);
+
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -377,6 +382,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
