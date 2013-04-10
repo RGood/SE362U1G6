@@ -23,14 +23,27 @@ public class H2TagCommand extends JMenuItem implements Command {
 
     @Override
     public void execute() {
-        pane = (JEditorPane)text.getSelectedComponent();
-        
-        try {
-            pane.getDocument().insertString(pane.getCaretPosition(), "<h2></h2>", null);
-        } catch (BadLocationException ex) {
-            System.out.print("NULL");
+        pane = (JEditorPane) text.getSelectedComponent();
+
+        if (pane.getSelectedText() != null) {
+
+            try {
+                pane.getDocument().insertString(pane.getSelectionStart(), "<h2>", null);
+                pane.getDocument().insertString(pane.getSelectionEnd(), "</h2>", null);
+            } catch (BadLocationException ex) {
+                System.out.print("NULL");
+            }
+
+        } else {
+
+            try {
+                pane.getDocument().insertString(pane.getCaretPosition(), "<h2></h2>", null);
+            } catch (BadLocationException ex) {
+                System.out.print("NULL");
+            }
+
         }
-        
+
     }
 
     @Override

@@ -22,7 +22,7 @@ public class IMGcommand extends JMenuItem implements Command {
     private String URL;
     private JEditorPane pane;
     
-    public IMGcommand(JTabbedPane text, Editor e){
+    public IMGcommand(JTabbedPane text){
         this.text = text;
         this.e = e;
     }
@@ -31,6 +31,7 @@ public class IMGcommand extends JMenuItem implements Command {
     public void execute() {
        pane = (JEditorPane)text.getSelectedComponent();
        open = new JFileChooser();
+       open.showOpenDialog(null);
        URL = open.getSelectedFile().getAbsolutePath();
        
         try {

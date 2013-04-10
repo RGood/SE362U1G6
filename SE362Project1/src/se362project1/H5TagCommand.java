@@ -25,11 +25,25 @@ public class H5TagCommand extends JMenuItem implements Command {
     @Override
     public void execute() {
        pane = (JEditorPane)text.getSelectedComponent();
+       
+       
+        if (pane.getSelectedText() != null) {
+
+            try {
+                pane.getDocument().insertString(pane.getSelectionStart(), "<h5>", null);
+                pane.getDocument().insertString(pane.getSelectionEnd(), "</h5>", null);
+            } catch (BadLocationException ex) {
+                System.out.print("NULL");
+            }
+
+        } else {
         
         try {
             pane.getDocument().insertString(pane.getCaretPosition(), "<h5></h5>", null);
         } catch (BadLocationException ex) {
             System.out.print("NULL");
+        }
+        
         }
     }
 

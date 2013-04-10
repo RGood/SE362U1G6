@@ -23,12 +23,24 @@ public class H4TagCommand extends JMenuItem implements Command {
 
     @Override
     public void execute() {
-        pane = (JEditorPane)text.getSelectedComponent();
-        
-        try {
-            pane.getDocument().insertString(pane.getCaretPosition(), "<h4></h4>", null);
-        } catch (BadLocationException ex) {
-            System.out.print("NULL");
+        pane = (JEditorPane) text.getSelectedComponent();
+
+        if (pane.getSelectedText() != null) {
+
+            try {
+                pane.getDocument().insertString(pane.getSelectionStart(), "<h4>", null);
+                pane.getDocument().insertString(pane.getSelectionEnd(), "</h4>", null);
+            } catch (BadLocationException ex) {
+                System.out.print("NULL");
+            }
+
+        } else {
+
+            try {
+                pane.getDocument().insertString(pane.getCaretPosition(), "<h4></h4>", null);
+            } catch (BadLocationException ex) {
+                System.out.print("NULL");
+            }
         }
     }
 
