@@ -7,6 +7,7 @@ package se362project1;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 /**
  *
@@ -62,6 +63,8 @@ public class Shortcuts implements KeyListener {
                 OpenCommand com = new OpenCommand();
                 com.execute();
                 editor.openTab(com.getFile());
+            }else if(key == 76){
+                editor.linksList();
             }
         }
     }
