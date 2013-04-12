@@ -14,9 +14,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
-import javax.swing.JFrame;
-import java.awt.Container;
-import javax.swing.JList;
 
 /**
  *
@@ -145,13 +142,10 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         return true;
     }
     
-    public void linksList(){
-        JFrame f = new JFrame("Links List");
-        f.setSize(400, 150);
-        Container content = f.getContentPane();
-        String[] data = {"one", "two", "three", "four"};
-        content.add(new JList(data));
-        f.setVisible(true);
+    public void linksList() {
+        LinksList l = new LinksList();
+        String[] list = {"TestImg", "Sample2", "Sample3"};
+        l.displayLinksList(list);
     }
 
     /**
