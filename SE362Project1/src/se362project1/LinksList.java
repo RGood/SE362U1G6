@@ -22,7 +22,6 @@ public class LinksList implements ActionListener {
     private JButton sortbutton;
     private JButton inorderbutton;
     private JTabbedPane pane;
-    private int selectedList;
     
     public LinksList(JTabbedPane pane){
         JFrame f = new JFrame("Links List");
@@ -53,8 +52,7 @@ public class LinksList implements ActionListener {
     }
     
     public void addLink(String URL, int index){
-       
-        selectedList = index;
+
         
         try {
            URLlist.get(index);
