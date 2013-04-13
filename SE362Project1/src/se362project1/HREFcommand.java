@@ -23,7 +23,7 @@ import javax.swing.text.BadLocationException;
 public class HREFcommand extends JMenuItem implements Command, ActionListener {
 
     private JTabbedPane text;
-    private Editor e;
+    private LinksList e;
     private JEditorPane pane;
     private JButton confirm;
     private JButton cancel;
@@ -34,9 +34,9 @@ public class HREFcommand extends JMenuItem implements Command, ActionListener {
     private JLabel colLabel;
     private JLabel rowLabel;
 
-    public HREFcommand(JTabbedPane text) {
+    public HREFcommand(JTabbedPane text, LinksList e) {
         this.text = text;
-        this.e = e;
+        this.e = e;  
     }
 
     @Override
@@ -83,6 +83,8 @@ public class HREFcommand extends JMenuItem implements Command, ActionListener {
             } catch (BadLocationException ex) {
             }
             
+            e.addLink(cols.getText(), text.getSelectedIndex());
+            e.displayLinksList(text);
             frame.dispose();
         }else{
             
