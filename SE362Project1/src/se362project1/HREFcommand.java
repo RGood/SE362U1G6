@@ -85,6 +85,7 @@ public class HREFcommand extends JMenuItem implements Command, ActionListener {
             
             e.addLink(cols.getText(), text.getSelectedIndex());
             e.displayLinksList(text);
+            e.update();
             frame.dispose();
         }else{
             

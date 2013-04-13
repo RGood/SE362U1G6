@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
 /**
  *
  * @author grantstacey
@@ -17,21 +18,32 @@ public class LinksList implements ActionListener {
     
     private ArrayList<ArrayList> URLlist = new ArrayList<ArrayList>();
     private JList list = new JList();
-    private JButton button;
+    private JButton updatebutton;
+    private JButton sortbutton;
+    private JButton inorderbutton;
     private JTabbedPane pane;
+    private int selectedList;
     
     public LinksList(JTabbedPane pane){
         JFrame f = new JFrame("Links List");
         JPanel panel = new JPanel();
-        button = new JButton("Update");
+        JPanel buttonPanel = new JPanel();
+        updatebutton = new JButton("Update");
+        sortbutton = new JButton("Sort");
+        inorderbutton = new JButton("In Order");
         this.pane = pane;
         f.setSize(400, 150);
         Container content = f.getContentPane();
         panel.setLayout(new BorderLayout());
         panel.add(list, BorderLayout.CENTER);
-        panel.add(button, BorderLayout.PAGE_START);
+        buttonPanel.add(updatebutton);
+        buttonPanel.add(sortbutton);
+        buttonPanel.add(inorderbutton);
+        panel.add(buttonPanel, BorderLayout.PAGE_START);
         f.add(panel);
-        button.addActionListener(this);
+        updatebutton.addActionListener(this);
+        sortbutton.addActionListener(this);
+        inorderbutton.addActionListener(this);
         f.setVisible(true);
     }
     
@@ -42,6 +54,8 @@ public class LinksList implements ActionListener {
     
     public void addLink(String URL, int index){
        
+        selectedList = index;
+        
         try {
            URLlist.get(index);
            URLlist.get(index).add(URL);
@@ -50,7 +64,7 @@ public class LinksList implements ActionListener {
            URLlist.add(index,URLs); 
            URLlist.get(index).add(URL);
         }
-
+        
     }
     
     public void update(){
@@ -59,6 +73,17 @@ public class LinksList implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        update();
+        if(e.getSource().equals(updatebutton)){
+            update();
+        }
+        else if(e.getSource().equals(sortbutton)){
+            ArrayList Copy = new ArrayList(URLlist.get(pane.getSelectedIndex()));
+            Collections.sort(Copy);
+            list.setListData(Copy.toArray());
+        }
+        else if(e.getSource().equals(inorderbutton)){
+            list.setListData(URLlist.get(pane.getSelectedIndex()).toArray());
+        }
+       
     }
 }
