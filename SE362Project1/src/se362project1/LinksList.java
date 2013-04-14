@@ -10,11 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 /**
  *
  * @author grantstacey
  */
-public class LinksList implements ActionListener {
+public class LinksList implements ActionListener, ListSelectionListener {
     
     private ArrayList<ArrayList> URLlist = new ArrayList<ArrayList>();
     private JList list = new JList();
@@ -22,6 +25,7 @@ public class LinksList implements ActionListener {
     private JButton sortbutton;
     private JButton inorderbutton;
     private JTabbedPane pane;
+    private JLabel label;
     
     public LinksList(JTabbedPane pane){
         JFrame f = new JFrame("Links List");
@@ -30,19 +34,21 @@ public class LinksList implements ActionListener {
         updatebutton = new JButton("Update");
         sortbutton = new JButton("Sort");
         inorderbutton = new JButton("In Order");
+        label = new JLabel("Test");
         this.pane = pane;
-        f.setSize(400, 150);
-        Container content = f.getContentPane();
         panel.setLayout(new BorderLayout());
         panel.add(list, BorderLayout.CENTER);
         buttonPanel.add(updatebutton);
         buttonPanel.add(sortbutton);
         buttonPanel.add(inorderbutton);
+        buttonPanel.add(label);
         panel.add(buttonPanel, BorderLayout.PAGE_START);
         f.add(panel);
         updatebutton.addActionListener(this);
         sortbutton.addActionListener(this);
         inorderbutton.addActionListener(this);
+        list.addListSelectionListener(this);
+        f.setSize(400, 400);
         f.setVisible(true);
     }
     
@@ -68,6 +74,21 @@ public class LinksList implements ActionListener {
     public void update(){
         list.setListData(URLlist.get(pane.getSelectedIndex()).toArray());
     }
+    
+    public void countDuplicates(){
+        String selected = (String) list.getSelectedValue();
+        Iterator itr = URLlist.get(pane.getSelectedIndex()).iterator();
+        int count = 0;
+        
+        while(itr.hasNext()){
+            if(selected.equals(itr.next())){
+                count++;
+            }
+        }
+        
+        label.setText(Integer.toString(count));
+        
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -83,5 +104,10 @@ public class LinksList implements ActionListener {
             list.setListData(URLlist.get(pane.getSelectedIndex()).toArray());
         }
        
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+        countDuplicates();
     }
 }
