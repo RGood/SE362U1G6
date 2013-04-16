@@ -5,8 +5,6 @@
 package se362project1;
 
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Randy
  */
-public class Editor extends javax.swing.JFrame implements ActionListener {
+public class Editor extends javax.swing.JFrame{
     FormatCheck checker = new BasicHTMLParser();
     
     
@@ -146,11 +144,6 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         return true;
     }
     
-    /*public void linksList() {
-        LinksList l = new LinksList();
-        String[] list = {"TestImg", "Sample2", "Sample3"};
-        l.displayLinksList(list);
-    }*/
 
     /**
      * This method is called from within the constructor to initialise the form.
@@ -164,11 +157,13 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        list = new LinksList(jTabbedPane3);
+        control = new CommandControl(this, jTabbedPane3);
         jMenu1 = new javax.swing.JMenu();
         New = new NewCommand(this);
         Open = new OpenCommand(this);
         Save = new SaveCommand(this);
-        SaveAs = new javax.swing.JMenuItem();
+        SaveAs = new SaveAsCommand(this);
         Close = new CloseCommand(this);
         jMenu2 = new javax.swing.JMenu();
         jMenuItem13 = new CopyCommand(jTabbedPane3);
@@ -176,7 +171,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jMenuItem15 = new PasteCommand(jTabbedPane3);
         jMenuItem16 = new SelectAllCommand(jTabbedPane3);
         jMenuItem17 = new IndentCommand(jTabbedPane3);
-        Undo = new javax.swing.JMenuItem();
+        Undo = new UndoCommand(this);
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new BoldCommand(jTabbedPane3);
         jMenuItem2 = new ItalicCommand(jTabbedPane3);
@@ -201,23 +196,23 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
 
         New.setText("New ");
         jMenu1.add(New);
-        New.addActionListener(this);
+        New.addActionListener(control);
 
         Open.setText("Open");
         jMenu1.add(Open);
-        Open.addActionListener(this);
+        Open.addActionListener(control);
 
         Save.setText("Save");
         jMenu1.add(Save);
-        Save.addActionListener(this);
+        Save.addActionListener(control);
 
         SaveAs.setText("Save As");
         jMenu1.add(SaveAs);
-        SaveAs.addActionListener(this);
+        SaveAs.addActionListener(control);
 
         Close.setText("Close");
         jMenu1.add(Close);
-        Close.addActionListener(this);
+        Close.addActionListener(control);
 
         jMenuBar1.add(jMenu1);
 
@@ -225,27 +220,27 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
 
         jMenuItem13.setText("Copy");
         jMenu2.add(jMenuItem13);
-        jMenuItem13.addActionListener(this);
+        jMenuItem13.addActionListener(control);
 
         jMenuItem14.setText("Cut");
         jMenu2.add(jMenuItem14);
-        jMenuItem14.addActionListener(this);
+        jMenuItem14.addActionListener(control);
 
         jMenuItem15.setText("Paste");
         jMenu2.add(jMenuItem15);
-        jMenuItem15.addActionListener(this);
+        jMenuItem15.addActionListener(control);
 
         jMenuItem16.setText("Select All");
         jMenu2.add(jMenuItem16);
-        jMenuItem16.addActionListener(this);
+        jMenuItem16.addActionListener(control);
 
         jMenuItem17.setText("Indent");
         jMenu2.add(jMenuItem17);
-        jMenuItem17.addActionListener(this);
+        jMenuItem17.addActionListener(control);
 
         Undo.setText("Undo");
         jMenu2.add(Undo);
-        Undo.addActionListener(this);
+        Undo.addActionListener(control);
 
         jMenuBar1.add(jMenu2);
 
@@ -253,59 +248,59 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
 
         jMenuItem1.setText("Bold");
         jMenu3.add(jMenuItem1);
-        jMenuItem1.addActionListener(this);
+        jMenuItem1.addActionListener(control);
 
         jMenuItem2.setText("Italic");
         jMenu3.add(jMenuItem2);
-        jMenuItem2.addActionListener(this);
+        jMenuItem2.addActionListener(control);
 
         jMenuItem3.setText("H1");
         jMenu3.add(jMenuItem3);
-        jMenuItem3.addActionListener(this);
+        jMenuItem3.addActionListener(control);
 
         jMenuItem4.setText("H2");
         jMenu3.add(jMenuItem4);
-        jMenuItem4.addActionListener(this);
+        jMenuItem4.addActionListener(control);
 
         jMenuItem5.setText("H3");
         jMenu3.add(jMenuItem5);
-        jMenuItem5.addActionListener(this);
+        jMenuItem5.addActionListener(control);
 
         jMenuItem6.setText("H4");
         jMenu3.add(jMenuItem6);
-        jMenuItem6.addActionListener(this);
+        jMenuItem6.addActionListener(control);
 
         jMenuItem7.setText("H5");
         jMenu3.add(jMenuItem7);
-        jMenuItem7.addActionListener(this);
+        jMenuItem7.addActionListener(control);
 
         jMenuItem8.setText("H6");
         jMenu3.add(jMenuItem8);
-        jMenuItem8.addActionListener(this);
+        jMenuItem8.addActionListener(control);
 
         jMenuItem9.setText("Ordered List");
         jMenu3.add(jMenuItem9);
-        jMenuItem9.addActionListener(this);
+        jMenuItem9.addActionListener(control);
 
         jMenuItem10.setText("UnOrdered List");
         jMenu3.add(jMenuItem10);
-        jMenuItem10.addActionListener(this);
+        jMenuItem10.addActionListener(control);
 
         jMenuItem11.setText("Definition List");
         jMenu3.add(jMenuItem11);
-        jMenuItem11.addActionListener(this);
+        jMenuItem11.addActionListener(control);
 
         jMenuItem12.setText("Table");
         jMenu3.add(jMenuItem12);
-        jMenuItem12.addActionListener(this);
+        jMenuItem12.addActionListener(control);
 
         jMenuItem18.setText("IMG");
         jMenu3.add(jMenuItem18);
-        jMenuItem18.addActionListener(this);
+        jMenuItem18.addActionListener(control);
 
         jMenuItem19.setText("HREF");
         jMenu3.add(jMenuItem19);
-        jMenuItem19.addActionListener(this);
+        jMenuItem19.addActionListener(control);
 
         jMenuBar1.add(jMenu3);
 
@@ -405,47 +400,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JTabbedPane jTabbedPane3;
     // End of variables declaration//GEN-END:variables
 
-    CommandControl control = new CommandControl(this);
-    LinksList list = new LinksList(jTabbedPane3);
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(Save)){
-            if(check() == false){
-                Object[] options = {"Yes, save.", "No, don't save."};
-                int n = JOptionPane.showOptionDialog(this, "The file is in an improper format. Save anyway?", 
-                        "Unsuccessful Check", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
-                        null, options, options[0]);
-                if(n == 1){
-                    return;
-                }
-            }
-            save();
-        }
-        else if(e.getSource().equals(SaveAs)){
-            if(check() == false){
-                Object[] options = {"Yes, save.", "No, don't save."};
-                int n = JOptionPane.showOptionDialog(this, "The file is in an improper format. Save anyway?", 
-                        "Unsuccessful Check", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
-                        null, options, options[0]);
-                if(n == 1){
-                    return;
-                }
-            }
-            SaveCommand com = new SaveCommand();
-            com.execute();
-            saveAs(com.getFile());
-        }
-        else if(e.getSource().equals(Undo)){
-            control.undoButton();
-        }
-        else{
-            JEditorPane pane = (JEditorPane)jTabbedPane3.getSelectedComponent();
-            ((HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1]).update(pane.getText());
-            saveCurState();
-            Command command = (Command)e.getSource();
-            control.setCommand(command);
-            control.pressButton();
-        }
-    }
+    private CommandControl control; 
+    private LinksList list; 
+   
 }

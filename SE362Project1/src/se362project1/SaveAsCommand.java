@@ -1,39 +1,29 @@
-/*Christopher Norman
- * 03/18/13
- *
- * This command is used to save files
- *
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
-
 package se362project1;
 
-import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
-
-public class SaveCommand extends JMenuItem implements Command {
-
-    private JFileChooser choose;
-    private File file;
-    private Editor e;
-
-
-    public SaveCommand(){
-
-        choose = new JFileChooser();
-    }
+/**
+ *
+ * @author christophernorman
+ */
+public class SaveAsCommand extends JMenuItem implements Command {
     
-    public SaveCommand(Editor e){
+    private Editor e;
+    private JFileChooser choose;
+    
+    public SaveAsCommand(Editor e){
         this.e = e;
         choose = new JFileChooser();
     }
 
     @Override
     public void execute() {
-        choose.showSaveDialog(null);
-        file = choose.getSelectedFile();
         if(e.check() == false){
                 Object[] options = {"Yes, save.", "No, don't save."};
                 int n = JOptionPane.showOptionDialog(this, "The file is in an improper format. Save anyway?", 
@@ -43,17 +33,15 @@ public class SaveCommand extends JMenuItem implements Command {
                     return;
                 }
             }
-            e.save();  
-    }
-    
-    public String getFile(){
-        return file.getPath() + ".html";
+         choose.showSaveDialog(null);
+         e.saveAs(choose.getSelectedFile().getPath() + ".html");
     }
 
     @Override
     public void undo() {
-
-
+        
+        
+        
     }
-
+    
 }

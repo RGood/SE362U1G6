@@ -50,6 +50,7 @@ public class HTMLBuffer implements KeyListener{
     
     public void restoreState(){
         buffer = state.pop();
+       // System.out.print("undo: " + buffer);
     }
     
     public void setFileName(String name){

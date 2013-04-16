@@ -12,13 +12,16 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="list = new LinksList(jTabbedPane3);&#xa;control = new CommandControl(this, jTabbedPane3);"/>
+          </AuxValues>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="New">
               <Properties>
                 <Property name="text" type="java.lang.String" value="New "/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="New.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="New.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new NewCommand(this)"/>
               </AuxValues>
             </MenuItem>
@@ -27,7 +30,7 @@
                 <Property name="text" type="java.lang.String" value="Open"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Open.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Open.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new OpenCommand(this)"/>
               </AuxValues>
             </MenuItem>
@@ -36,7 +39,7 @@
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Save.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Save.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SaveCommand(this)"/>
               </AuxValues>
             </MenuItem>
@@ -45,7 +48,8 @@
                 <Property name="text" type="java.lang.String" value="Save As"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="SaveAs.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="SaveAs.addActionListener(control);"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SaveAsCommand(this)"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Close">
@@ -53,7 +57,7 @@
                 <Property name="text" type="java.lang.String" value="Close"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Close.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Close.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new CloseCommand(this)"/>
               </AuxValues>
             </MenuItem>
@@ -69,7 +73,7 @@
                 <Property name="text" type="java.lang.String" value="Copy"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem13.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem13.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new CopyCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -78,7 +82,7 @@
                 <Property name="text" type="java.lang.String" value="Cut"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem14.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem14.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new CutCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -87,7 +91,7 @@
                 <Property name="text" type="java.lang.String" value="Paste"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem15.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem15.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PasteCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -96,7 +100,7 @@
                 <Property name="text" type="java.lang.String" value="Select All"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem16.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem16.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SelectAllCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -105,7 +109,7 @@
                 <Property name="text" type="java.lang.String" value="Indent"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem17.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem17.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new IndentCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -114,7 +118,8 @@
                 <Property name="text" type="java.lang.String" value="Undo"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Undo.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Undo.addActionListener(control);"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new UndoCommand(this)"/>
               </AuxValues>
             </MenuItem>
           </SubComponents>
@@ -129,7 +134,7 @@
                 <Property name="text" type="java.lang.String" value="Bold"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem1.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem1.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BoldCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -138,7 +143,7 @@
                 <Property name="text" type="java.lang.String" value="Italic"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem2.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem2.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ItalicCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -147,7 +152,7 @@
                 <Property name="text" type="java.lang.String" value="H1"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem3.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem3.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H1TagCommand(jTabbedPane3, this)"/>
               </AuxValues>
             </MenuItem>
@@ -156,7 +161,7 @@
                 <Property name="text" type="java.lang.String" value="H2"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem4.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem4.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H2TagCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -165,7 +170,7 @@
                 <Property name="text" type="java.lang.String" value="H3"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem5.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem5.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H3TagCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -174,7 +179,7 @@
                 <Property name="text" type="java.lang.String" value="H4"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem6.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem6.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H4TagCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -183,7 +188,7 @@
                 <Property name="text" type="java.lang.String" value="H5"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem7.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem7.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H5TagCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -192,7 +197,7 @@
                 <Property name="text" type="java.lang.String" value="H6"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem8.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem8.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H6TagCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -201,7 +206,7 @@
                 <Property name="text" type="java.lang.String" value="Ordered List"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem9.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem9.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new OrderedListCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -210,7 +215,7 @@
                 <Property name="text" type="java.lang.String" value="UnOrdered List"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem10.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem10.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new UnorderedListCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -219,7 +224,7 @@
                 <Property name="text" type="java.lang.String" value="Definition List"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem11.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem11.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new DefinitionListCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -228,7 +233,7 @@
                 <Property name="text" type="java.lang.String" value="Table"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem12.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem12.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TableTagCommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -237,7 +242,7 @@
                 <Property name="text" type="java.lang.String" value="IMG"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem18.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem18.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new IMGcommand(jTabbedPane3)"/>
               </AuxValues>
             </MenuItem>
@@ -246,7 +251,7 @@
                 <Property name="text" type="java.lang.String" value="HREF"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem19.addActionListener(this);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jMenuItem19.addActionListener(control);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new HREFcommand(jTabbedPane3, list)"/>
               </AuxValues>
             </MenuItem>
