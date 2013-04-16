@@ -27,6 +27,7 @@ public class IndentCommand extends JMenuItem implements Command {
     
     @Override
     public void execute() {
+        e.saveCurState();
         pane = (JEditorPane)text.getSelectedComponent();
         if(pane.getSelectedText() == null){
             try {

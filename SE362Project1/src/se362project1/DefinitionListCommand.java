@@ -68,9 +68,9 @@ public class DefinitionListCommand extends JMenuItem implements Command, ActionL
     @Override
     public void actionPerformed(ActionEvent e) {
         ed.saveCurState();
-        
-        pane = (JEditorPane)text.getSelectedComponent();
-        
+
+        pane = (JEditorPane) text.getSelectedComponent();
+
         try {
 
             if (e.getSource().equals(confirm)) {
