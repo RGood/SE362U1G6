@@ -17,9 +17,11 @@ public class BoldCommand extends JMenuItem implements Command {
 
     private JTabbedPane text;
     private JEditorPane pane;
+    private Editor e;
 
-    public BoldCommand(JTabbedPane text) {
+    public BoldCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.e = e;
     }
 
     @Override

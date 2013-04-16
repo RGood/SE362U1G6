@@ -18,9 +18,11 @@ public class IndentCommand extends JMenuItem implements Command {
     
     private JTabbedPane text;
     private JEditorPane pane;
+    private Editor e;
     
-    public IndentCommand(JTabbedPane text){
+    public IndentCommand(JTabbedPane text, Editor e){
         this.text = text;
+        this.e = e;
     }
     
     @Override

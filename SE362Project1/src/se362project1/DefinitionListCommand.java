@@ -32,9 +32,11 @@ public class DefinitionListCommand extends JMenuItem implements Command, ActionL
     private JLabel defLabel;
     private JLabel termLabel;
     private JEditorPane pane;
+    private Editor ed;
 
-    public DefinitionListCommand(JTabbedPane text) {
+    public DefinitionListCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.ed = e;
     }
 
     @Override
@@ -69,7 +71,8 @@ public class DefinitionListCommand extends JMenuItem implements Command, ActionL
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        ed.saveCurState();
+        
         pane = (JEditorPane)text.getSelectedComponent();
         
         try {

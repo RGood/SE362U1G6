@@ -19,9 +19,11 @@ public class CopyCommand extends JMenuItem implements Command {
 
     private JEditorPane pane;
     private JTabbedPane text;
+    private Editor e;
 
-    public CopyCommand(JTabbedPane text) {
+    public CopyCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.e = e;
     }
 
     @Override

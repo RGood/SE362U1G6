@@ -19,13 +19,16 @@ public class CutCommand extends JMenuItem implements Command {
 
     private JTabbedPane text;
     private JEditorPane pane;
+    private Editor e;
 
-    public CutCommand(JTabbedPane text) {
-        this.text = text;
+    public CutCommand(JTabbedPane text, Editor e) {
+        this.text = text;;
+        this.e = e;
     }
 
     @Override
     public void execute() {
+        e.saveCurState();
         pane = (JEditorPane)text.getSelectedComponent();
         StringSelection selection = new StringSelection(pane.getSelectedText());
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();

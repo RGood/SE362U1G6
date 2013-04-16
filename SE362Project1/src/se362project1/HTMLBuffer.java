@@ -46,11 +46,12 @@ public class HTMLBuffer implements KeyListener{
     public void saveState(){
         String bufferCopy = buffer;
         state.push(bufferCopy);
+        System.out.println("save: " + bufferCopy);
     }
     
     public void restoreState(){
         buffer = state.pop();
-       // System.out.print("undo: " + buffer);
+        System.out.println("undo: " + buffer);
     }
     
     public void setFileName(String name){

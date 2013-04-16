@@ -20,7 +20,7 @@ public class UndoCommand  extends JMenuItem implements Command {
 
     @Override
     public void execute() {
-           e.undoCurState();
+         e.undoCurState();
     }
 
     @Override

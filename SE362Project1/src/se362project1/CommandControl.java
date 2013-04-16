@@ -43,7 +43,6 @@ public class CommandControl implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent avt) {
             JEditorPane text = (JEditorPane)pane.getSelectedComponent();
-            e.saveCurState();
             ((HTMLBuffer)pane.getSelectedComponent().getKeyListeners()[1]).update(text.getText());
             Command command = (Command)avt.getSource();
             setCommand(command);

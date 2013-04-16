@@ -18,13 +18,16 @@ public class OrderedListCommand extends JMenuItem implements Command {
 
     private JEditorPane pane;
     private JTabbedPane text;
+    private Editor e;
 
-    public OrderedListCommand(JTabbedPane text) {
+    public OrderedListCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.e = e;
     }
 
     @Override
     public void execute() {
+        e.saveCurState();
         
         pane = (JEditorPane)text.getSelectedComponent();
         

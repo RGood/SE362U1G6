@@ -25,9 +25,11 @@ public class PasteCommand extends JMenuItem implements Command {
     private JTabbedPane text;
     private JEditorPane pane;
     private String copyText = " ";
+    private Editor e;
 
-    public PasteCommand(JTabbedPane text) {
+    public PasteCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.e = e;
     }
 
     @Override

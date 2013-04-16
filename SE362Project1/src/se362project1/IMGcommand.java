@@ -23,19 +23,20 @@ public class IMGcommand extends JMenuItem implements Command {
     private String URL;
     private JEditorPane pane;
     
-    public IMGcommand(JTabbedPane text){
+    public IMGcommand(JTabbedPane text, Editor e){
         this.text = text;
         this.e = e;
     }
 
     @Override
     public void execute() {
+       e.saveCurState();
+        
        pane = (JEditorPane)text.getSelectedComponent();
        open = new JFileChooser();
        open.showOpenDialog(null);
        URL = open.getSelectedFile().getAbsolutePath();
        
-      // URL = JOptionPane.showInputDialog(null,"Enter the URL");
        
         try {
             pane.getDocument().insertString(pane.getCaretPosition(), "<img src=\"" + URL + "\" />", null);

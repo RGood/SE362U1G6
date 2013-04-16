@@ -16,13 +16,16 @@ public class SelectAllCommand extends JMenuItem implements Command {
 
     private JTabbedPane text;
     private JEditorPane pane;
+    private Editor e;
     
-    public SelectAllCommand(JTabbedPane text){
+    public SelectAllCommand(JTabbedPane text, Editor e){
         this.text = text;
+        this.e = e;
     }
     
     @Override
     public void execute() {
+        e.saveCurState();
         pane = (JEditorPane)text.getSelectedComponent();
         pane.selectAll();
     }
