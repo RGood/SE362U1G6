@@ -34,7 +34,4 @@ public class CopyCommand extends JMenuItem implements Command {
         clipboard.setContents(selection, selection);
     }
 
-    @Override
-    public void undo() {
-    }
 }

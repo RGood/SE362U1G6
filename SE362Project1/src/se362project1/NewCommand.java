@@ -27,9 +27,4 @@ public class NewCommand extends JMenuItem implements Command{
         e.addTab();
     }
 
-    @Override
-    public void undo() {
-
-    }
-
 }

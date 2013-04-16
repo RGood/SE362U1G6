@@ -59,10 +59,6 @@ public class TableTagCommand extends JMenuItem implements Command, ActionListene
     }
 
     @Override
-    public void undo() {
-    }
-
-    @Override
     public void actionPerformed(ActionEvent e) {
         
        ed.saveCurState();

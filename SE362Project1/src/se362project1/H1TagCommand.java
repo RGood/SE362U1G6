@@ -48,9 +48,4 @@ public class H1TagCommand extends JMenuItem implements Command {
 
 
     }
-
-    @Override
-    public void undo() {
-        e.undoCurState();
-    }
 }

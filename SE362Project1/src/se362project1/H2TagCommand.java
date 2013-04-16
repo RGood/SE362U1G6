@@ -49,8 +49,4 @@ public class H2TagCommand extends JMenuItem implements Command {
         }
 
     }
-
-    @Override
-    public void undo() {
-    }
 }

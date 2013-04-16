@@ -45,14 +45,4 @@ public class OpenCommand extends JMenuItem implements Command{
      return file.getPath();
     }
 
-    @Override
-    public void undo() {
-
-
-    }
-
-
-
-
-
 }

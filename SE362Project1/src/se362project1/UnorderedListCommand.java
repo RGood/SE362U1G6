@@ -47,8 +47,4 @@ public class UnorderedListCommand extends JMenuItem implements Command {
             System.out.print("NULL");
         }
     }
-
-    @Override
-    public void undo() {
-    }
 }

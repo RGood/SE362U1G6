@@ -48,11 +48,4 @@ public class IMGcommand extends JMenuItem implements Command {
         
     }
 
-    @Override
-    public void undo() {
-        e.undoCurState();
-    }
-    
-    
-    
 }

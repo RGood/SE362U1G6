@@ -27,7 +27,6 @@ public class H4TagCommand extends JMenuItem implements Command {
     public void execute() {
         
         e.saveCurState();
-        
         pane = (JEditorPane) text.getSelectedComponent();
 
         if (pane.getSelectedText() != null) {
@@ -47,9 +46,5 @@ public class H4TagCommand extends JMenuItem implements Command {
                 System.out.print("NULL");
             }
         }
-    }
-
-    @Override
-    public void undo() {
     }
 }

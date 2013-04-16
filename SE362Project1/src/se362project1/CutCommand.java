@@ -36,7 +36,4 @@ public class CutCommand extends JMenuItem implements Command {
         pane.replaceSelection(" ");
     }
 
-    @Override
-    public void undo() {
-    }
 }

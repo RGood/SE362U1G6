@@ -48,7 +48,4 @@ public class OrderedListCommand extends JMenuItem implements Command {
         }
     }
 
-    @Override
-    public void undo() {
-    }
 }

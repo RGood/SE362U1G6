@@ -50,10 +50,4 @@ public class SaveCommand extends JMenuItem implements Command {
         return file.getPath() + ".html";
     }
 
-    @Override
-    public void undo() {
-
-
-    }
-
 }

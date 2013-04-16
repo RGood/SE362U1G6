@@ -51,8 +51,4 @@ public class PasteCommand extends JMenuItem implements Command {
             Logger.getLogger(PasteCommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    @Override
-    public void undo() {
-    }
 }

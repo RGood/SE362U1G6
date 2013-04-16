@@ -23,11 +23,4 @@ public class UndoCommand  extends JMenuItem implements Command {
          e.undoCurState();
     }
 
-    @Override
-    public void undo() {
-        
-    }
-    
-    
-    
 }

@@ -43,10 +43,4 @@ public class IndentCommand extends JMenuItem implements Command {
             }
         }
     }
-
-    @Override
-    public void undo() {
-        
-    }
-    
 }

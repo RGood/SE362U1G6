@@ -48,8 +48,4 @@ public class H6TagCommand extends JMenuItem implements Command {
             }
         }
     }
-
-    @Override
-    public void undo() {
-    }
 }

@@ -37,11 +37,4 @@ public class SaveAsCommand extends JMenuItem implements Command {
          e.saveAs(choose.getSelectedFile().getPath() + ".html");
     }
 
-    @Override
-    public void undo() {
-        
-        
-        
-    }
-    
 }

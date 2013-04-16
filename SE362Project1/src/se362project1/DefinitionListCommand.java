@@ -66,10 +66,6 @@ public class DefinitionListCommand extends JMenuItem implements Command, ActionL
     }
 
     @Override
-    public void undo() {
-    }
-
-    @Override
     public void actionPerformed(ActionEvent e) {
         ed.saveCurState();
         

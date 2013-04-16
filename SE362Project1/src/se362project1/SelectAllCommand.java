@@ -30,9 +30,4 @@ public class SelectAllCommand extends JMenuItem implements Command {
         pane.selectAll();
     }
 
-    @Override
-    public void undo() {
-        
-    }
-    
 }

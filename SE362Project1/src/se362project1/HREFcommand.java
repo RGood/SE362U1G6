@@ -68,10 +68,6 @@ public class HREFcommand extends JMenuItem implements Command, ActionListener {
     }
 
     @Override
-    public void undo() {
-    }
-
-    @Override
     public void actionPerformed(ActionEvent ae) {
 
         ed.saveCurState();

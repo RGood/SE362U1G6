@@ -51,7 +51,4 @@ public class H5TagCommand extends JMenuItem implements Command {
         }
     }
 
-    @Override
-    public void undo() {
-    }
 }
