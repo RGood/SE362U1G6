@@ -36,6 +36,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="SaveAs">
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SaveAsCommand(this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(SaveAs);"/>
               </AuxValues>
             </MenuItem>

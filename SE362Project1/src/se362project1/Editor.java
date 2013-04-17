@@ -169,7 +169,7 @@ public class Editor extends javax.swing.JFrame {
         New = new NewCommand(this);
         Open = new OpenCommand(this);
         Save = new SaveCommand(this);
-        SaveAs = new javax.swing.JMenuItem();
+        SaveAs = new SaveAsCommand(this);
         Close = new CloseCommand(this);
         jMenu2 = new javax.swing.JMenu();
         Copy = new CopyCommand(jTabbedPane3, this);
@@ -302,6 +302,8 @@ public class Editor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    //Method for when an events is called
+    //The command is then executed
     private void executedObject(ActionEvent evt){
         JEditorPane text = (JEditorPane) jTabbedPane3.getSelectedComponent();
         ((HTMLBuffer) jTabbedPane3.getSelectedComponent().getKeyListeners()[1]).update(text.getText());
@@ -310,7 +312,7 @@ public class Editor extends javax.swing.JFrame {
         control.pressButton();
     }
     
-  
+    //Attaches the names and an actionlistener to each of the menu items
     private void addActionAndName(ArrayList<JMenuItem> items,String names[]) {
         for (int i = 0; i < items.size(); i++) {
             items.get(i).setText(names[i]);
