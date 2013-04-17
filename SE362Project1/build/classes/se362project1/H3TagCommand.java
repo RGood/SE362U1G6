@@ -7,7 +7,6 @@
  */
 package se362project1;
 
-
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
 import javax.swing.JTabbedPane;
@@ -24,13 +23,26 @@ public class H3TagCommand extends JMenuItem implements Command {
 
     @Override
     public void execute() {
-        
-        pane = (JEditorPane)text.getSelectedComponent();
-        
-        try {
-            pane.getDocument().insertString(pane.getCaretPosition(), "<h3></h3>", null);
-        } catch (BadLocationException ex) {
-            System.out.print("NULL");
+
+        pane = (JEditorPane) text.getSelectedComponent();
+
+        if (pane.getSelectedText() != null) {
+
+            try {
+                pane.getDocument().insertString(pane.getSelectionStart(), "<h3>", null);
+                pane.getDocument().insertString(pane.getSelectionEnd(), "</h3>", null);
+            } catch (BadLocationException ex) {
+                System.out.print("NULL");
+            }
+
+        } else {
+
+            try {
+                pane.getDocument().insertString(pane.getCaretPosition(), "<h3></h3>", null);
+            } catch (BadLocationException ex) {
+                System.out.print("NULL");
+            }
+
         }
     }
 

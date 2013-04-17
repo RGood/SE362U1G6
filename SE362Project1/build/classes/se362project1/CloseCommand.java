@@ -19,19 +19,14 @@ public class CloseCommand extends JMenuItem implements Command{
 
     private JList list;
     private JTabbedPane pane;
+    private Editor e;
 
-    public CloseCommand(JTabbedPane pane){
-        this.pane = pane;
-       // this.list = list;
-        //filelist = CurrentFileList.getSingletonObject();
+    public CloseCommand(Editor e){
+        this.e = e;
     }
 
     public void execute() {
-        Component selected = pane.getSelectedComponent();
-
-        if(selected != null){
-            pane.remove(selected);
-        }
+        e.closeCur();
     }
 
     public void undo() {

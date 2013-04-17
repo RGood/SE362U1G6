@@ -13,18 +13,25 @@ public class CommandControl {
 
     private Command command;
     private Stack<Command> undoStack;
+    private Editor e;
 
-    public CommandControl() {
+    public CommandControl(Editor e) {
         undoStack = new Stack<Command>();
+        this.e = e;
     }
 
     public void setCommand(Command command) {
         this.command = command;
         undoStack.push(command);
+        e.saveCurState();
 
     }
 
     public void pressButton() {
         command.execute();
+    }
+    
+    public void undoButton(){
+        e.undoCurState();
     }
 }

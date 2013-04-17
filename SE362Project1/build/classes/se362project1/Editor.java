@@ -21,11 +21,15 @@ import javax.swing.JOptionPane;
  */
 public class Editor extends javax.swing.JFrame implements ActionListener {
     FormatCheck checker = new BasicHTMLParser();
+    
+    
     /**
      * Creates new form Editor
      */
     public Editor() {
         initComponents();
+        
+        
     }
     
     public boolean check(){
@@ -142,11 +146,11 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         return true;
     }
     
-    public void linksList() {
+    /*public void linksList() {
         LinksList l = new LinksList();
         String[] list = {"TestImg", "Sample2", "Sample3"};
         l.displayLinksList(list);
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialise the form.
@@ -187,7 +191,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jMenuItem11 = new DefinitionListCommand(jTabbedPane3);
         jMenuItem12 = new TableTagCommand(jTabbedPane3);
         jMenuItem18 = new IMGcommand(jTabbedPane3);
-        jMenuItem19 = new HREFcommand(jTabbedPane3);
+        jMenuItem19 = new HREFcommand(jTabbedPane3, list);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -402,6 +406,7 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     // End of variables declaration//GEN-END:variables
 
     CommandControl control = new CommandControl(this);
+    LinksList list = new LinksList(jTabbedPane3);
     
     @Override
     public void actionPerformed(ActionEvent e) {

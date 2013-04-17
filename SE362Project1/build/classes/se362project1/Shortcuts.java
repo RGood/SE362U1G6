@@ -64,7 +64,7 @@ public class Shortcuts implements KeyListener {
                 com.execute();
                 editor.openTab(com.getFile());
             }else if(key == 76){
-                editor.linksList();
+                //editor.linksList();
             }
         }
     }

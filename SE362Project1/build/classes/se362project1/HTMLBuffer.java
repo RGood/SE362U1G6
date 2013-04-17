@@ -10,6 +10,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Stack;
 import javax.swing.JEditorPane;
 
 /**
@@ -18,9 +20,13 @@ import javax.swing.JEditorPane;
  */
 public class HTMLBuffer implements KeyListener{
     String buffer;
+    String fullBuffer;
     String bufState;
     String fileName;
     JEditorPane pane;
+    Stack<String> state = new Stack<String>();
+    HashMap minLines;
+    TagList minimizer = new TagList();
     
     public HTMLBuffer(JEditorPane p){
         buffer = "";
@@ -39,6 +45,19 @@ public class HTMLBuffer implements KeyListener{
     public HTMLBuffer(String name,String text){
         buffer = text;
         fileName = name;
+    }
+    
+    public void setHashMap(){
+        minLines = minimizer.genTagList(buffer);
+    }
+    
+    public void saveState(){
+        String bufferCopy = buffer;
+        state.push(bufferCopy);
+    }
+    
+    public void restoreState(){
+        buffer = state.pop();
     }
     
     public void setFileName(String name){
