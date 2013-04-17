@@ -23,7 +23,11 @@ import javax.swing.JOptionPane;
  */
 public class Editor extends javax.swing.JFrame {
     FormatCheck checker = new BasicHTMLParser();
-    private ArrayList<JMenuItem> items = new ArrayList<JMenuItem>(); 
+    private ArrayList<JMenuItem> items = new ArrayList<JMenuItem>();
+    private String menuNames[] = {"New", "Open", "Save", "Save As", "Close", "Copy", 
+    "Cut", "Paste", "Select All", "Indent", "Undo", "Bold", "Italic", "H1", "H2",
+    "H3", "H4", "H5", "H6", "Ordered List", "UnOrdered List", "Definition List", 
+    "Table", "IMG", "HREF"};
     
     
     /**
@@ -196,23 +200,18 @@ public class Editor extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        New.setText("New");
         items.add(New);
         jMenu1.add(New);
 
-        Open.setText("Open");
         items.add(Open);
         jMenu1.add(Open);
 
-        Save.setText("Save");
         items.add(Save);
         jMenu1.add(Save);
 
-        SaveAs.setText("Save As");
         items.add(SaveAs);
         jMenu1.add(SaveAs);
 
-        Close.setText("Close");
         items.add(Close);
         jMenu1.add(Close);
 
@@ -220,27 +219,21 @@ public class Editor extends javax.swing.JFrame {
 
         jMenu2.setText("Edit");
 
-        Copy.setText("Copy");
         items.add(Copy);
         jMenu2.add(Copy);
 
-        Cut.setText("Cut");
         items.add(Cut);
         jMenu2.add(Cut);
 
-        Paste.setText("Paste");
         items.add(Paste);
         jMenu2.add(Paste);
 
-        SelectAll.setText("Select All");
         items.add(SelectAll);
         jMenu2.add(SelectAll);
 
-        Indent.setText("Indent");
         items.add(Indent);
         jMenu2.add(Indent);
 
-        Undo.setText("Undo");
         items.add(Undo);
         jMenu2.add(Undo);
 
@@ -248,62 +241,48 @@ public class Editor extends javax.swing.JFrame {
 
         jMenu3.setText("HTML");
 
-        Bold.setText("Bold");
         items.add(Bold);
         jMenu3.add(Bold);
 
-        Italic.setText("Italic");
         items.add(Italic);
         jMenu3.add(Italic);
 
-        H1.setText("H1");
         items.add(H1);
         jMenu3.add(H1);
 
-        H2.setText("H2");
         items.add(H2);
         jMenu3.add(H2);
 
-        H3.setText("H3");
         items.add(H3);
         jMenu3.add(H3);
 
-        H4.setText("H4");
         items.add(H4);
         jMenu3.add(H4);
 
-        H5.setText("H5");
         items.add(H5);
         jMenu3.add(H5);
 
-        H6.setText("H6");
         items.add(H6);
         jMenu3.add(H6);
 
-        OrderedList.setText("Ordered List");
         items.add(OrderedList);
         jMenu3.add(OrderedList);
 
-        UnOrderedList.setText("UnOrdered List");
         items.add(UnOrderedList);
         jMenu3.add(UnOrderedList);
 
-        DefinitionList.setText("Definition List");
         items.add(DefinitionList);
         jMenu3.add(DefinitionList);
 
-        Table.setText("Table");
         items.add(Table);
         jMenu3.add(Table);
 
-        IMG.setText("IMG");
         items.add(IMG);
         jMenu3.add(IMG);
 
-        HREF.setText("HREF");
         items.add(HREF);
         jMenu3.add(HREF);
-        addAction(items);
+        addActionAndName(items, menuNames);
 
         jMenuBar1.add(jMenu3);
 
@@ -331,8 +310,10 @@ public class Editor extends javax.swing.JFrame {
         control.pressButton();
     }
     
-    private void addAction(ArrayList<JMenuItem> items) {
+  
+    private void addActionAndName(ArrayList<JMenuItem> items,String names[]) {
         for (int i = 0; i < items.size(); i++) {
+            items.get(i).setText(names[i]);
             items.get(i).addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent evt) {

@@ -17,44 +17,29 @@
           </AuxValues>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="New">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="New"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new NewCommand(this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(New);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Open">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Open"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new OpenCommand(this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Open);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Save">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Save"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SaveCommand(this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Save);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="SaveAs">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Save As"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(SaveAs);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Close">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Close"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new CloseCommand(this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Close);"/>
@@ -68,54 +53,36 @@
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="Copy">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Copy"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new CopyCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Copy);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Cut">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cut"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new CutCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Cut);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Paste">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Paste"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PasteCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Paste);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="SelectAll">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Select All"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new SelectAllCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(SelectAll);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Indent">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Indent"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new IndentCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Indent);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Undo">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Undo"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new UndoCommand(this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Undo);"/>
@@ -129,128 +96,86 @@
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="Bold">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Bold"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BoldCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Bold);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Italic">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Italic"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new ItalicCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Italic);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="H1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="H1"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H1TagCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(H1);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="H2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="H2"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H2TagCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(H2);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="H3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="H3"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H3TagCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(H3);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="H4">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="H4"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H4TagCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(H4);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="H5">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="H5"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H5TagCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(H5);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="H6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="H6"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new H6TagCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(H6);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="OrderedList">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ordered List"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new OrderedListCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(OrderedList);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="UnOrderedList">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="UnOrdered List"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new UnorderedListCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(UnOrderedList);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="DefinitionList">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Definition List"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new DefinitionListCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(DefinitionList);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Table">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Table"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new TableTagCommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Table);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="IMG">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="IMG"/>
-              </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new IMGcommand(jTabbedPane3, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(IMG);"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="HREF">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="HREF"/>
-              </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="addAction(items);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="addActionAndName(items, menuNames);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new HREFcommand(jTabbedPane3, list, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(HREF);"/>
               </AuxValues>
