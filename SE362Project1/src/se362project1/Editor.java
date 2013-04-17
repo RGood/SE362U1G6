@@ -28,8 +28,6 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
      */
     public Editor() {
         initComponents();
-        
-        
     }
     
     public boolean check(){

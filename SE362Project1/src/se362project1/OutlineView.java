@@ -4,6 +4,9 @@
  */
 package se362project1;
 
+import javax.swing.JFrame;
+import javax.swing.tree.DefaultMutableTreeNode;
+
 /**
  *
  * @author Randy
@@ -13,8 +16,16 @@ public class OutlineView extends javax.swing.JFrame {
     /**
      * Creates new form OutlineView
      */
-    public OutlineView() {
+    private String html;
+    public OutlineView(String HTMLText) {
         initComponents();
+        html = HTMLText;
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+    
+    private DefaultMutableTreeNode GenerateNode(String htmlText){
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode();
+        return node;
     }
 
     /**
@@ -26,17 +37,24 @@ public class OutlineView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane1.setViewportView(jTree1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -72,10 +90,12 @@ public class OutlineView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new OutlineView().setVisible(true);
+                //new OutlineView().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }
