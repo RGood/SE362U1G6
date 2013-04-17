@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se362project1;
 
 
@@ -18,13 +14,16 @@ public class IndentCommand extends JMenuItem implements Command {
     
     private JTabbedPane text;
     private JEditorPane pane;
+    private Editor e;
     
-    public IndentCommand(JTabbedPane text){
+    public IndentCommand(JTabbedPane text, Editor e){
         this.text = text;
+        this.e = e;
     }
     
     @Override
     public void execute() {
+        e.saveCurState();
         pane = (JEditorPane)text.getSelectedComponent();
         if(pane.getSelectedText() == null){
             try {
@@ -41,10 +40,4 @@ public class IndentCommand extends JMenuItem implements Command {
             }
         }
     }
-
-    @Override
-    public void undo() {
-        
-    }
-    
 }

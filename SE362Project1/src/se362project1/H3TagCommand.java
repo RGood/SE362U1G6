@@ -16,14 +16,17 @@ public class H3TagCommand extends JMenuItem implements Command {
 
     private JEditorPane pane;
     private JTabbedPane text;
+    private Editor e;
 
-    public H3TagCommand(JTabbedPane text) {
+    public H3TagCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.e = e;
     }
 
     @Override
     public void execute() {
-
+        e.saveCurState();
+        
         pane = (JEditorPane) text.getSelectedComponent();
 
         if (pane.getSelectedText() != null) {
@@ -44,9 +47,5 @@ public class H3TagCommand extends JMenuItem implements Command {
             }
 
         }
-    }
-
-    @Override
-    public void undo() {
     }
 }

@@ -10,31 +10,29 @@ package se362project1;
 
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JViewport;
 import javax.swing.text.BadLocationException;
 
 public class ItalicCommand extends JMenuItem implements Command {
 
     private JEditorPane pane;
     private JTabbedPane text;
+    private Editor e;
 
-    public ItalicCommand(JTabbedPane text) {
+    public ItalicCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.e = e;
     }
 
     @Override
     public void execute() {
+        e.saveCurState();
+        
         pane = (JEditorPane)text.getSelectedComponent();
         try {
             pane.getDocument().insertString(pane.getCaretPosition(), "<i></i>", null);
         } catch (BadLocationException ex) {
             System.out.print("NULL");
         }
-    }
-
-    @Override
-    public void undo() {
     }
 }

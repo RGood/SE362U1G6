@@ -12,15 +12,18 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JEditorPane;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Randy
  */
-public class Editor extends javax.swing.JFrame implements ActionListener {
+public class Editor extends javax.swing.JFrame {
     FormatCheck checker = new BasicHTMLParser();
+    private ArrayList<JMenuItem> items = new ArrayList<JMenuItem>(); 
     
     
     /**
@@ -144,12 +147,6 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         return true;
     }
     
-    /*public void linksList() {
-        LinksList l = new LinksList();
-        String[] list = {"TestImg", "Sample2", "Sample3"};
-        l.displayLinksList(list);
-    }*/
-
     /**
      * This method is called from within the constructor to initialise the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -162,6 +159,8 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
+        list = new LinksList(jTabbedPane3);
+        control = new CommandControl(this, jTabbedPane3);
         jMenu1 = new javax.swing.JMenu();
         New = new NewCommand(this);
         Open = new OpenCommand(this);
@@ -169,27 +168,27 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
         SaveAs = new javax.swing.JMenuItem();
         Close = new CloseCommand(this);
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem13 = new CopyCommand(jTabbedPane3);
-        jMenuItem14 = new CutCommand(jTabbedPane3);
-        jMenuItem15 = new PasteCommand(jTabbedPane3);
-        jMenuItem16 = new SelectAllCommand(jTabbedPane3);
-        jMenuItem17 = new IndentCommand(jTabbedPane3);
-        Undo = new javax.swing.JMenuItem();
+        Copy = new CopyCommand(jTabbedPane3, this);
+        Cut = new CutCommand(jTabbedPane3, this);
+        Paste = new PasteCommand(jTabbedPane3, this);
+        SelectAll = new SelectAllCommand(jTabbedPane3, this);
+        Indent = new IndentCommand(jTabbedPane3, this);
+        Undo = new UndoCommand(this);
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new BoldCommand(jTabbedPane3);
-        jMenuItem2 = new ItalicCommand(jTabbedPane3);
-        jMenuItem3 = new H1TagCommand(jTabbedPane3, this);
-        jMenuItem4 = new H2TagCommand(jTabbedPane3);
-        jMenuItem5 = new H3TagCommand(jTabbedPane3);
-        jMenuItem6 = new H4TagCommand(jTabbedPane3);
-        jMenuItem7 = new H5TagCommand(jTabbedPane3);
-        jMenuItem8 = new H6TagCommand(jTabbedPane3);
-        jMenuItem9 = new OrderedListCommand(jTabbedPane3);
-        jMenuItem10 = new UnorderedListCommand(jTabbedPane3);
-        jMenuItem11 = new DefinitionListCommand(jTabbedPane3);
-        jMenuItem12 = new TableTagCommand(jTabbedPane3);
-        jMenuItem18 = new IMGcommand(jTabbedPane3);
-        jMenuItem19 = new HREFcommand(jTabbedPane3, list);
+        Bold = new BoldCommand(jTabbedPane3, this);
+        Italic = new ItalicCommand(jTabbedPane3, this);
+        H1 = new H1TagCommand(jTabbedPane3, this);
+        H2 = new H2TagCommand(jTabbedPane3, this);
+        H3 = new H3TagCommand(jTabbedPane3, this);
+        H4 = new H4TagCommand(jTabbedPane3, this);
+        H5 = new H5TagCommand(jTabbedPane3, this);
+        H6 = new H6TagCommand(jTabbedPane3, this);
+        OrderedList = new OrderedListCommand(jTabbedPane3, this);
+        UnOrderedList = new UnorderedListCommand(jTabbedPane3, this);
+        DefinitionList = new DefinitionListCommand(jTabbedPane3, this);
+        Table = new TableTagCommand(jTabbedPane3, this);
+        IMG = new IMGcommand(jTabbedPane3, this);
+        HREF = new HREFcommand(jTabbedPane3, list, this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -197,113 +196,114 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
 
         jMenu1.setText("File");
 
-        New.setText("New ");
+        New.setText("New");
+        items.add(New);
         jMenu1.add(New);
-        New.addActionListener(this);
 
         Open.setText("Open");
+        items.add(Open);
         jMenu1.add(Open);
-        Open.addActionListener(this);
 
         Save.setText("Save");
+        items.add(Save);
         jMenu1.add(Save);
-        Save.addActionListener(this);
 
         SaveAs.setText("Save As");
+        items.add(SaveAs);
         jMenu1.add(SaveAs);
-        SaveAs.addActionListener(this);
 
         Close.setText("Close");
+        items.add(Close);
         jMenu1.add(Close);
-        Close.addActionListener(this);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
 
-        jMenuItem13.setText("Copy");
-        jMenu2.add(jMenuItem13);
-        jMenuItem13.addActionListener(this);
+        Copy.setText("Copy");
+        items.add(Copy);
+        jMenu2.add(Copy);
 
-        jMenuItem14.setText("Cut");
-        jMenu2.add(jMenuItem14);
-        jMenuItem14.addActionListener(this);
+        Cut.setText("Cut");
+        items.add(Cut);
+        jMenu2.add(Cut);
 
-        jMenuItem15.setText("Paste");
-        jMenu2.add(jMenuItem15);
-        jMenuItem15.addActionListener(this);
+        Paste.setText("Paste");
+        items.add(Paste);
+        jMenu2.add(Paste);
 
-        jMenuItem16.setText("Select All");
-        jMenu2.add(jMenuItem16);
-        jMenuItem16.addActionListener(this);
+        SelectAll.setText("Select All");
+        items.add(SelectAll);
+        jMenu2.add(SelectAll);
 
-        jMenuItem17.setText("Indent");
-        jMenu2.add(jMenuItem17);
-        jMenuItem17.addActionListener(this);
+        Indent.setText("Indent");
+        items.add(Indent);
+        jMenu2.add(Indent);
 
         Undo.setText("Undo");
+        items.add(Undo);
         jMenu2.add(Undo);
-        Undo.addActionListener(this);
 
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("HTML");
 
-        jMenuItem1.setText("Bold");
-        jMenu3.add(jMenuItem1);
-        jMenuItem1.addActionListener(this);
+        Bold.setText("Bold");
+        items.add(Bold);
+        jMenu3.add(Bold);
 
-        jMenuItem2.setText("Italic");
-        jMenu3.add(jMenuItem2);
-        jMenuItem2.addActionListener(this);
+        Italic.setText("Italic");
+        items.add(Italic);
+        jMenu3.add(Italic);
 
-        jMenuItem3.setText("H1");
-        jMenu3.add(jMenuItem3);
-        jMenuItem3.addActionListener(this);
+        H1.setText("H1");
+        items.add(H1);
+        jMenu3.add(H1);
 
-        jMenuItem4.setText("H2");
-        jMenu3.add(jMenuItem4);
-        jMenuItem4.addActionListener(this);
+        H2.setText("H2");
+        items.add(H2);
+        jMenu3.add(H2);
 
-        jMenuItem5.setText("H3");
-        jMenu3.add(jMenuItem5);
-        jMenuItem5.addActionListener(this);
+        H3.setText("H3");
+        items.add(H3);
+        jMenu3.add(H3);
 
-        jMenuItem6.setText("H4");
-        jMenu3.add(jMenuItem6);
-        jMenuItem6.addActionListener(this);
+        H4.setText("H4");
+        items.add(H4);
+        jMenu3.add(H4);
 
-        jMenuItem7.setText("H5");
-        jMenu3.add(jMenuItem7);
-        jMenuItem7.addActionListener(this);
+        H5.setText("H5");
+        items.add(H5);
+        jMenu3.add(H5);
 
-        jMenuItem8.setText("H6");
-        jMenu3.add(jMenuItem8);
-        jMenuItem8.addActionListener(this);
+        H6.setText("H6");
+        items.add(H6);
+        jMenu3.add(H6);
 
-        jMenuItem9.setText("Ordered List");
-        jMenu3.add(jMenuItem9);
-        jMenuItem9.addActionListener(this);
+        OrderedList.setText("Ordered List");
+        items.add(OrderedList);
+        jMenu3.add(OrderedList);
 
-        jMenuItem10.setText("UnOrdered List");
-        jMenu3.add(jMenuItem10);
-        jMenuItem10.addActionListener(this);
+        UnOrderedList.setText("UnOrdered List");
+        items.add(UnOrderedList);
+        jMenu3.add(UnOrderedList);
 
-        jMenuItem11.setText("Definition List");
-        jMenu3.add(jMenuItem11);
-        jMenuItem11.addActionListener(this);
+        DefinitionList.setText("Definition List");
+        items.add(DefinitionList);
+        jMenu3.add(DefinitionList);
 
-        jMenuItem12.setText("Table");
-        jMenu3.add(jMenuItem12);
-        jMenuItem12.addActionListener(this);
+        Table.setText("Table");
+        items.add(Table);
+        jMenu3.add(Table);
 
-        jMenuItem18.setText("IMG");
-        jMenu3.add(jMenuItem18);
-        jMenuItem18.addActionListener(this);
+        IMG.setText("IMG");
+        items.add(IMG);
+        jMenu3.add(IMG);
 
-        jMenuItem19.setText("HREF");
-        jMenu3.add(jMenuItem19);
-        jMenuItem19.addActionListener(this);
+        HREF.setText("HREF");
+        items.add(HREF);
+        jMenu3.add(HREF);
+        addAction(items);
 
         jMenuBar1.add(jMenu3);
 
@@ -322,7 +322,25 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void executedObject(ActionEvent evt){
+        JEditorPane text = (JEditorPane) jTabbedPane3.getSelectedComponent();
+        ((HTMLBuffer) jTabbedPane3.getSelectedComponent().getKeyListeners()[1]).update(text.getText());
+        Command command = (Command) evt.getSource();
+        control.setCommand(command);
+        control.pressButton();
+    }
+    
+    private void addAction(ArrayList<JMenuItem> items) {
+        for (int i = 0; i < items.size(); i++) {
+            items.get(i).addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent evt) {
+                    executedObject(evt);
+                }
+            });
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -370,80 +388,40 @@ public class Editor extends javax.swing.JFrame implements ActionListener {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Bold;
     private javax.swing.JMenuItem Close;
+    private javax.swing.JMenuItem Copy;
+    private javax.swing.JMenuItem Cut;
+    private javax.swing.JMenuItem DefinitionList;
+    private javax.swing.JMenuItem H1;
+    private javax.swing.JMenuItem H2;
+    private javax.swing.JMenuItem H3;
+    private javax.swing.JMenuItem H4;
+    private javax.swing.JMenuItem H5;
+    private javax.swing.JMenuItem H6;
+    private javax.swing.JMenuItem HREF;
+    private javax.swing.JMenuItem IMG;
+    private javax.swing.JMenuItem Indent;
+    private javax.swing.JMenuItem Italic;
     private javax.swing.JMenuItem New;
     private javax.swing.JMenuItem Open;
+    private javax.swing.JMenuItem OrderedList;
+    private javax.swing.JMenuItem Paste;
     private javax.swing.JMenuItem Save;
     private javax.swing.JMenuItem SaveAs;
+    private javax.swing.JMenuItem SelectAll;
+    private javax.swing.JMenuItem Table;
+    private javax.swing.JMenuItem UnOrderedList;
     private javax.swing.JMenuItem Undo;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
-    private javax.swing.JMenuItem jMenuItem17;
-    private javax.swing.JMenuItem jMenuItem18;
-    private javax.swing.JMenuItem jMenuItem19;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane3;
     // End of variables declaration//GEN-END:variables
 
-    CommandControl control = new CommandControl(this);
-    LinksList list = new LinksList(jTabbedPane3);
-    
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(Save)){
-            if(check() == false){
-                Object[] options = {"Yes, save.", "No, don't save."};
-                int n = JOptionPane.showOptionDialog(this, "The file is in an improper format. Save anyway?", 
-                        "Unsuccessful Check", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
-                        null, options, options[0]);
-                if(n == 1){
-                    return;
-                }
-            }
-            save();
-        }
-        else if(e.getSource().equals(SaveAs)){
-            if(check() == false){
-                Object[] options = {"Yes, save.", "No, don't save."};
-                int n = JOptionPane.showOptionDialog(this, "The file is in an improper format. Save anyway?", 
-                        "Unsuccessful Check", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, 
-                        null, options, options[0]);
-                if(n == 1){
-                    return;
-                }
-            }
-            SaveCommand com = new SaveCommand();
-            com.execute();
-            saveAs(com.getFile());
-        }
-        else if(e.getSource().equals(Undo)){
-            control.undoButton();
-        }
-        else{
-            JEditorPane pane = (JEditorPane)jTabbedPane3.getSelectedComponent();
-            ((HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1]).update(pane.getText());
-            saveCurState();
-            Command command = (Command)e.getSource();
-            control.setCommand(command);
-            control.pressButton();
-        }
-    }
+    private CommandControl control; 
+    private LinksList list; 
+
 }

@@ -25,9 +25,11 @@ public class TableTagCommand extends JMenuItem implements Command, ActionListene
     private JPanel panel;
     private JLabel colLabel;
     private JLabel rowLabel;
+    private Editor ed;
 
-    public TableTagCommand(JTabbedPane text) {
+    public TableTagCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.ed = e;
     }
 
     @Override
@@ -57,12 +59,10 @@ public class TableTagCommand extends JMenuItem implements Command, ActionListene
     }
 
     @Override
-    public void undo() {
-    }
-
-    @Override
     public void actionPerformed(ActionEvent e) {
         
+       ed.saveCurState();
+       
        pane = (JEditorPane)text.getSelectedComponent();
 
         try {

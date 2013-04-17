@@ -8,7 +8,7 @@
 
 package se362project1;
 
-import javax.swing.JEditorPane;
+
 import javax.swing.JMenuItem;
 import javax.swing.JTabbedPane;
 
@@ -25,11 +25,6 @@ public class NewCommand extends JMenuItem implements Command{
     @Override
     public void execute() {
         e.addTab();
-    }
-
-    @Override
-    public void undo() {
-
     }
 
 }

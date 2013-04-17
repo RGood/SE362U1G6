@@ -16,14 +16,18 @@ public class H6TagCommand extends JMenuItem implements Command {
 
     private JEditorPane pane;
     private JTabbedPane text;
+    private Editor e;
 
-    public H6TagCommand(JTabbedPane text) {
+    public H6TagCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.e = e;
     }
 
     @Override
     public void execute() {
-
+        
+        e.saveCurState();
+        
         pane = (JEditorPane) text.getSelectedComponent();
 
         if (pane.getSelectedText() != null) {
@@ -43,9 +47,5 @@ public class H6TagCommand extends JMenuItem implements Command {
                 System.out.print("NULL");
             }
         }
-    }
-
-    @Override
-    public void undo() {
     }
 }

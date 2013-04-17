@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se362project1;
 
 import javax.swing.*;
@@ -15,7 +11,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 /**
  *
- * @author grantstacey
+ * @author christopher norman
  */
 public class LinksList implements ActionListener, ListSelectionListener {
     

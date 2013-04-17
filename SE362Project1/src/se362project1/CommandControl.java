@@ -7,31 +7,35 @@
  */
 package se362project1;
 
-import java.util.Stack;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JEditorPane;
+import javax.swing.JTabbedPane;
 
 public class CommandControl {
 
-    private Command command;
-    private Stack<Command> undoStack;
+    
+    private Command command;;
     private Editor e;
+    private JTabbedPane pane;
 
-    public CommandControl(Editor e) {
-        undoStack = new Stack<Command>();
+    //Passes in an Editor and a JTabbedPane to save the state before
+    //a command is executed
+    public CommandControl(Editor e, JTabbedPane pane) {
         this.e = e;
+        this.pane = pane;
     }
-
+    
+    //Sets the command to be executed
     public void setCommand(Command command) {
         this.command = command;
-        undoStack.push(command);
-        e.saveCurState();
-
     }
 
+    //Simulates the pressing of a button
+    //Calls to the execute command in the inferface
+    //then executes the concrete command
     public void pressButton() {
         command.execute();
     }
-    
-    public void undoButton(){
-        e.undoCurState();
-    }
+
 }

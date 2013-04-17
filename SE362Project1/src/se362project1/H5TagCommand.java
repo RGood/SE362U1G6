@@ -17,13 +17,17 @@ public class H5TagCommand extends JMenuItem implements Command {
 
     private JEditorPane pane;
     private JTabbedPane text;
+    private Editor e;
 
-    public H5TagCommand(JTabbedPane text) {
+    public H5TagCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.e = e;
     }
 
     @Override
     public void execute() {
+       e.saveCurState();
+        
        pane = (JEditorPane)text.getSelectedComponent();
        
        
@@ -47,7 +51,4 @@ public class H5TagCommand extends JMenuItem implements Command {
         }
     }
 
-    @Override
-    public void undo() {
-    }
 }

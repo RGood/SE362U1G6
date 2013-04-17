@@ -18,13 +18,16 @@ public class UnorderedListCommand extends JMenuItem implements Command {
 
     private JEditorPane pane;
     private JTabbedPane text;
+    private Editor ed;
 
-    public UnorderedListCommand(JTabbedPane text) {
+    public UnorderedListCommand(JTabbedPane text, Editor e) {
         this.text = text;
+        this.ed = e;
     }
 
     @Override
     public void execute() {
+       ed.saveCurState();
         
        pane = (JEditorPane)text.getSelectedComponent();
        
@@ -43,9 +46,5 @@ public class UnorderedListCommand extends JMenuItem implements Command {
         } catch (BadLocationException ex) {
             System.out.print("NULL");
         }
-    }
-
-    @Override
-    public void undo() {
     }
 }
