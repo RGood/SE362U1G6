@@ -7,6 +7,8 @@ package se362project1;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 import javax.swing.JEditorPane;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -121,7 +124,7 @@ public class Editor extends javax.swing.JFrame {
     
     public void addTab(){
         JEditorPane editorPane = new JEditorPane();
-        editorPane.addKeyListener(new Shortcuts(this));
+        editorPane.addKeyListener(new Shortcuts(this, jTabbedPane3));
         editorPane.addKeyListener(new HTMLBuffer(editorPane));
         jTabbedPane3.addTab("*untitled "+(jTabbedPane3.getTabCount()+1)+"*", editorPane);
     }
@@ -143,7 +146,7 @@ public class Editor extends javax.swing.JFrame {
         } catch (IOException ex) {
             return false;
         }
-        newPane.addKeyListener(new Shortcuts(this));
+        newPane.addKeyListener(new Shortcuts(this, jTabbedPane3));
         newPane.addKeyListener(newBuff);
         newPane.setText(newBuff.getText());
         jTabbedPane3.addTab(newBuff.getFileName(), newPane);
@@ -244,7 +247,9 @@ public class Editor extends javax.swing.JFrame {
         jMenu3.setText("HTML");
 
         items.add(Bold);
+        Shortcuts cuts = new Shortcuts();
         jMenu3.add(Bold);
+        Bold.setAccelerator(KeyStroke.getKeyStroke(cuts.keys[0], cuts.input[0]));
 
         items.add(Italic);
         jMenu3.add(Italic);
@@ -331,7 +336,18 @@ public class Editor extends javax.swing.JFrame {
                 }
             });
         }
+        
+        addShortCuts(items);
     }
+    
+    //Adds the Keyshortcuts to the menuitems
+    private void addShortCuts(ArrayList<JMenuItem> items){
+        Shortcuts cuts = new Shortcuts();
+        for(int i = 0; i < items.size(); i++){
+            items.get(i).setAccelerator(KeyStroke.getKeyStroke(cuts.keys[i], cuts.input[i]));
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

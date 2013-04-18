@@ -98,8 +98,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="Bold">
               <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="Bold.setAccelerator(KeyStroke.getKeyStroke(cuts.keys[0], cuts.input[0]));"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new BoldCommand(jTabbedPane3, this)"/>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Bold);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(Bold);&#xa;Shortcuts cuts = new Shortcuts();"/>
               </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Italic">

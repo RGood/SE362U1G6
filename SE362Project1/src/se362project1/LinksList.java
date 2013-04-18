@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -76,7 +75,8 @@ public class LinksList implements ActionListener, ListSelectionListener {
         
         for(int i = 0; i < HTML.length(); i++){
             String temp = "";
-            if(HTML.charAt(i) == 'h' && HTML.charAt(i + 1) == 'r' && HTML.charAt(i + 2) == 'e' && HTML.charAt(i + 3) == 'f'){
+            if(HTML.charAt(i) == 'h' && HTML.charAt(i + 1) == 'r' && 
+                    HTML.charAt(i + 2) == 'e' && HTML.charAt(i + 3) == 'f'){
                 int s  = (i + 6);
                 while(HTML.charAt(s) != '"'){
                     temp += HTML.charAt(s);
