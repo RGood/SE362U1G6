@@ -7,8 +7,6 @@ package se362project1;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -64,6 +62,13 @@ public class Editor extends javax.swing.JFrame {
         buf.setFileName(fileName);
         buf.save();
         jTabbedPane3.setTitleAt(jTabbedPane3.getSelectedIndex(), buf.getFileName());
+    }
+    
+    public void openCurOutline(){
+        HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1];
+        OutlineView outline = new OutlineView(buf.getText());
+        outline.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        outline.setVisible(true);
     }
     
     public void closeCur(){
