@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" /><title>BlueFilter xref</title>
+<link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../../apidocs/org/bounce/image/BlueFilter.html">View Javadoc</a></div><pre>
+
+<a name="1" href="#1">1</a>   <em class="comment">/*</em>
+<a name="2" href="#2">2</a>   <em class="comment"> * $Id: BlueFilter.java,v 1.4 2008/01/28 21:28:37 edankert Exp $</em>
+<a name="3" href="#3">3</a>   <em class="comment"> *</em>
+<a name="4" href="#4">4</a>   <em class="comment"> * Copyright (c) 2002 - 2008, Edwin Dankert</em>
+<a name="5" href="#5">5</a>   <em class="comment"> * All rights reserved.</em>
+<a name="6" href="#6">6</a>   <em class="comment"> *</em>
+<a name="7" href="#7">7</a>   <em class="comment"> * Redistribution and use in source and binary forms, with or without </em>
+<a name="8" href="#8">8</a>   <em class="comment"> * modification, are permitted provided that the following conditions are met:</em>
+<a name="9" href="#9">9</a>   <em class="comment"> * * Redistributions of source code must retain the above copyright notice, </em>
+<a name="10" href="#10">10</a>  <em class="comment"> *	 this list of conditions and the following disclaimer.</em>
+<a name="11" href="#11">11</a>  <em class="comment"> * * Redistributions in binary form must reproduce the above copyright </em>
+<a name="12" href="#12">12</a>  <em class="comment"> * 	 notice, this list of conditions and the following disclaimer in the </em>
+<a name="13" href="#13">13</a>  <em class="comment"> *	 documentation and/or other materials provided with the distribution. </em>
+<a name="14" href="#14">14</a>  <em class="comment"> * * Neither the name of 'Edwin Dankert' nor the names of its contributors </em>
+<a name="15" href="#15">15</a>  <em class="comment"> *	 may  be used to endorse or promote products derived from this software </em>
+<a name="16" href="#16">16</a>  <em class="comment"> *	 without specific prior written permission. </em>
+<a name="17" href="#17">17</a>  <em class="comment"> *</em>
+<a name="18" href="#18">18</a>  <em class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" </em>
+<a name="19" href="#19">19</a>  <em class="comment"> * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE </em>
+<a name="20" href="#20">20</a>  <em class="comment"> * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE </em>
+<a name="21" href="#21">21</a>  <em class="comment"> * ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR </em>
+<a name="22" href="#22">22</a>  <em class="comment"> * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL </em>
+<a name="23" href="#23">23</a>  <em class="comment"> * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR </em>
+<a name="24" href="#24">24</a>  <em class="comment"> * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER </em>
+<a name="25" href="#25">25</a>  <em class="comment"> * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, </em>
+<a name="26" href="#26">26</a>  <em class="comment"> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE </em>
+<a name="27" href="#27">27</a>  <em class="comment"> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a name="28" href="#28">28</a>  <em class="comment"> */</em>
+<a name="29" href="#29">29</a>  
+<a name="30" href="#30">30</a>  <strong>package</strong> org.bounce.image;
+<a name="31" href="#31">31</a>  
+<a name="32" href="#32">32</a>  <em>/**<em>*</em></em>
+<a name="33" href="#33">33</a>  <em> * A filter to create a 'blue scale' image.</em>
+<a name="34" href="#34">34</a>  <em> *</em>
+<a name="35" href="#35">35</a>  <em> * @version	$Revision: 1.4 $, $Date: 2008/01/28 21:28:37 $</em>
+<a name="36" href="#36">36</a>  <em> * @author Edwin Dankert &lt;edankert@gmail.com></em>
+<a name="37" href="#37">37</a>  <em> */</em>
+<a name="38" href="#38">38</a>  <strong>public</strong> <strong>class</strong> <a href="../../../org/bounce/image/BlueFilter.html">BlueFilter</a> <strong>extends</strong> <a href="../../../org/bounce/image/BaseFilter.html">BaseFilter</a> {
+<a name="39" href="#39">39</a>  	<strong>private</strong> <strong>int</strong> percent;
+<a name="40" href="#40">40</a>  
+<a name="41" href="#41">41</a>  	<em>/**<em>*</em></em>
+<a name="42" href="#42">42</a>  <em>	 * Constructs a Filter that can be used to construct a </em>
+<a name="43" href="#43">43</a>  <em>	 * blue-scale image.</em>
+<a name="44" href="#44">44</a>  <em>	 *</em>
+<a name="45" href="#45">45</a>  <em>	 * @param p the percentage of color in the range 0..100, where 100 is </em>
+<a name="46" href="#46">46</a>  <em>	 *        the darkest, and 0 is the lightest.</em>
+<a name="47" href="#47">47</a>  <em>	 */</em>
+<a name="48" href="#48">48</a>  	<strong>public</strong> <a href="../../../org/bounce/image/BlueFilter.html">BlueFilter</a>( <strong>int</strong> p) {
+<a name="49" href="#49">49</a>  	    percent = p;
+<a name="50" href="#50">50</a>  
+<a name="51" href="#51">51</a>  	    canFilterIndexColorModel = <strong>true</strong>;
+<a name="52" href="#52">52</a>  	}
+<a name="53" href="#53">53</a>  	
+<a name="54" href="#54">54</a>      <em>/**<em>*</em></em>
+<a name="55" href="#55">55</a>  <em>     * Overrides &lt;code>RGBImageFilter.filterRGB&lt;/code>.</em>
+<a name="56" href="#56">56</a>  <em>     *</em>
+<a name="57" href="#57">57</a>  <em>     * @param x the horizontal position of the pixel.</em>
+<a name="58" href="#58">58</a>  <em>     * @param y the vertical position of the pixel.</em>
+<a name="59" href="#59">59</a>  <em>     * @param rgb the rgb value of the pixel.</em>
+<a name="60" href="#60">60</a>  <em>     *</em>
+<a name="61" href="#61">61</a>  <em>     * @return the new rgb value</em>
+<a name="62" href="#62">62</a>  <em>     */</em>
+<a name="63" href="#63">63</a>      <strong>public</strong> <strong>int</strong> filterRGB( <strong>int</strong> x, <strong>int</strong> y, <strong>int</strong> rgb) {
+<a name="64" href="#64">64</a>  		<strong>int</strong> blueComponent = getNTSCValue( rgb);
+<a name="65" href="#65">65</a>          
+<a name="66" href="#66">66</a>  		blueComponent = (blueComponent * (100 - percent) / 100);
+<a name="67" href="#67">67</a>  	
+<a name="68" href="#68">68</a>          <strong>if</strong> ( blueComponent &lt; 0) {
+<a name="69" href="#69">69</a>  			blueComponent = 0;
+<a name="70" href="#70">70</a>          }
+<a name="71" href="#71">71</a>  
+<a name="72" href="#72">72</a>          <strong>if</strong> ( blueComponent > 0xFF) {
+<a name="73" href="#73">73</a>  		 	blueComponent = 255;
+<a name="74" href="#74">74</a>          }
+<a name="75" href="#75">75</a>  
+<a name="76" href="#76">76</a>          <strong>return</strong> getRGB( rgb, 0, 0, blueComponent);
+<a name="77" href="#77">77</a>      }
+<a name="78" href="#78">78</a>  } 
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+

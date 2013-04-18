@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" /><title>SyntaxHighlightingView xref</title>
+<link type="text/css" rel="stylesheet" href="../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../../apidocs/org/bounce/text/SyntaxHighlightingView.html">View Javadoc</a></div><pre>
+
+<a name="1" href="#1">1</a>   <em class="comment">/*</em>
+<a name="2" href="#2">2</a>   <em class="comment"> * $Id: XMLView.java,v 1.4 2008/04/16 19:36:18 edankert Exp $</em>
+<a name="3" href="#3">3</a>   <em class="comment"> *</em>
+<a name="4" href="#4">4</a>   <em class="comment"> * Copyright (c) 2002 - 2009, Edwin Dankert</em>
+<a name="5" href="#5">5</a>   <em class="comment"> * All rights reserved.</em>
+<a name="6" href="#6">6</a>   <em class="comment"> *</em>
+<a name="7" href="#7">7</a>   <em class="comment"> * Redistribution and use in source and binary forms, with or without </em>
+<a name="8" href="#8">8</a>   <em class="comment"> * modification, are permitted provided that the following conditions are met:</em>
+<a name="9" href="#9">9</a>   <em class="comment"> * * Redistributions of source code must retain the above copyright notice, </em>
+<a name="10" href="#10">10</a>  <em class="comment"> *   this list of conditions and the following disclaimer.</em>
+<a name="11" href="#11">11</a>  <em class="comment"> * * Redistributions in binary form must reproduce the above copyright </em>
+<a name="12" href="#12">12</a>  <em class="comment"> *   notice, this list of conditions and the following disclaimer in the </em>
+<a name="13" href="#13">13</a>  <em class="comment"> *   documentation and/or other materials provided with the distribution. </em>
+<a name="14" href="#14">14</a>  <em class="comment"> * * Neither the name of 'Edwin Dankert' nor the names of its contributors </em>
+<a name="15" href="#15">15</a>  <em class="comment"> *   may  be used to endorse or promote products derived from this software </em>
+<a name="16" href="#16">16</a>  <em class="comment"> *   without specific prior written permission. </em>
+<a name="17" href="#17">17</a>  <em class="comment"> *</em>
+<a name="18" href="#18">18</a>  <em class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" </em>
+<a name="19" href="#19">19</a>  <em class="comment"> * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE </em>
+<a name="20" href="#20">20</a>  <em class="comment"> * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE </em>
+<a name="21" href="#21">21</a>  <em class="comment"> * ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR </em>
+<a name="22" href="#22">22</a>  <em class="comment"> * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL </em>
+<a name="23" href="#23">23</a>  <em class="comment"> * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR </em>
+<a name="24" href="#24">24</a>  <em class="comment"> * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER </em>
+<a name="25" href="#25">25</a>  <em class="comment"> * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, </em>
+<a name="26" href="#26">26</a>  <em class="comment"> * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE </em>
+<a name="27" href="#27">27</a>  <em class="comment"> * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</em>
+<a name="28" href="#28">28</a>  <em class="comment"> */</em>
+<a name="29" href="#29">29</a>  
+<a name="30" href="#30">30</a>  <strong>package</strong> org.bounce.text;
+<a name="31" href="#31">31</a>  
+<a name="32" href="#32">32</a>  <strong>import</strong> java.awt.Color;
+<a name="33" href="#33">33</a>  <strong>import</strong> java.awt.Font;
+<a name="34" href="#34">34</a>  <strong>import</strong> java.awt.Graphics;
+<a name="35" href="#35">35</a>  <strong>import</strong> java.awt.Rectangle;
+<a name="36" href="#36">36</a>  <strong>import</strong> java.awt.Shape;
+<a name="37" href="#37">37</a>  <strong>import</strong> java.io.IOException;
+<a name="38" href="#38">38</a>  
+<a name="39" href="#39">39</a>  <strong>import</strong> javax.swing.text.BadLocationException;
+<a name="40" href="#40">40</a>  <strong>import</strong> javax.swing.text.Caret;
+<a name="41" href="#41">41</a>  <strong>import</strong> javax.swing.text.Document;
+<a name="42" href="#42">42</a>  <strong>import</strong> javax.swing.text.Element;
+<a name="43" href="#43">43</a>  <strong>import</strong> javax.swing.text.Highlighter;
+<a name="44" href="#44">44</a>  <strong>import</strong> javax.swing.text.JTextComponent;
+<a name="45" href="#45">45</a>  <strong>import</strong> javax.swing.text.Segment;
+<a name="46" href="#46">46</a>  <strong>import</strong> javax.swing.text.Style;
+<a name="47" href="#47">47</a>  <strong>import</strong> javax.swing.text.StyleConstants;
+<a name="48" href="#48">48</a>  <strong>import</strong> javax.swing.text.StyleContext;
+<a name="49" href="#49">49</a>  <strong>import</strong> javax.swing.text.TabExpander;
+<a name="50" href="#50">50</a>  <strong>import</strong> javax.swing.text.Utilities;
+<a name="51" href="#51">51</a>  <strong>import</strong> javax.swing.text.View;
+<a name="52" href="#52">52</a>  
+<a name="53" href="#53">53</a>  <em>/**<em>*</em></em>
+<a name="54" href="#54">54</a>  <em> * The View uses the syntax highlighting scanner to determine the style (font, color) of the</em>
+<a name="55" href="#55">55</a>  <em> * text that it renders.</em>
+<a name="56" href="#56">56</a>  <em> * &lt;p></em>
+<a name="57" href="#57">57</a>  <em> * &lt;b>Note: &lt;/b> The Editor package is based on the JavaEditorKit example as</em>
+<a name="58" href="#58">58</a>  <em> * described in the article &lt;i>'Customizing a Text Editor' &lt;/i> by &lt;b>Timothy</em>
+<a name="59" href="#59">59</a>  <em> * Prinzing &lt;/b>. See:</em>
+<a name="60" href="#60">60</a>  <em> * <a href="http://java.sun.com/products/jfc/tsc/articles/text/editor_kit/" target="alexandria_uri">http://java.sun.com/products/jfc/tsc/articles/text/editor_kit/</a></em>
+<a name="61" href="#61">61</a>  <em> * &lt;/p></em>
+<a name="62" href="#62">62</a>  <em> * </em>
+<a name="63" href="#63">63</a>  <em> * @author Edwin Dankert &lt;edankert@gmail.com></em>
+<a name="64" href="#64">64</a>  <em> * @version $Revision: 1.4 $, $Date: 2008/04/16 19:36:18 $</em>
+<a name="65" href="#65">65</a>  <em> */</em>
+<a name="66" href="#66">66</a>  <strong>public</strong> <strong>abstract</strong> <strong>class</strong> <a href="../../../org/bounce/text/SyntaxHighlightingView.html">SyntaxHighlightingView</a> <strong>extends</strong> <a href="../../../org/bounce/text/FoldingPlainView.html">FoldingPlainView</a> {
+<a name="67" href="#67">67</a>  	<strong>private</strong> <strong>static</strong> Style DEFAULT_STYLE = (<strong>new</strong> StyleContext()).<strong>new</strong> NamedStyle();
+<a name="68" href="#68">68</a>  
+<a name="69" href="#69">69</a>  	<strong>private</strong> Color selected = <strong>null</strong>;
+<a name="70" href="#70">70</a>  
+<a name="71" href="#71">71</a>  	<strong>private</strong> <a href="../../../org/bounce/text/SyntaxHighlightingScanner.html">SyntaxHighlightingScanner</a> scanner = <strong>null</strong>;
+<a name="72" href="#72">72</a>  	<strong>private</strong> StyleContext context = <strong>null</strong>;
+<a name="73" href="#73">73</a>  
+<a name="74" href="#74">74</a>  	<em>/**<em>*</em></em>
+<a name="75" href="#75">75</a>  <em>	 * Construct a colorized view of xml text for the element. Gets the current</em>
+<a name="76" href="#76">76</a>  <em>	 * document and creates a new Scanner object.</em>
+<a name="77" href="#77">77</a>  <em>	 * </em>
+<a name="78" href="#78">78</a>  <em>	 * @param context</em>
+<a name="79" href="#79">79</a>  <em>	 *            the styles used to colorize the view.</em>
+<a name="80" href="#80">80</a>  <em>	 * @param elem</em>
+<a name="81" href="#81">81</a>  <em>	 *            the element to create the view for.</em>
+<a name="82" href="#82">82</a>  <em>	 * @throws IOException</em>
+<a name="83" href="#83">83</a>  <em>	 *             input/output exception while reading document</em>
+<a name="84" href="#84">84</a>  <em>	 */</em>
+<a name="85" href="#85">85</a>  	<strong>public</strong> <a href="../../../org/bounce/text/SyntaxHighlightingView.html">SyntaxHighlightingView</a>(<a href="../../../org/bounce/text/SyntaxHighlightingScanner.html">SyntaxHighlightingScanner</a> scanner, StyleContext context, Element elem) throws IOException {
+<a name="86" href="#86">86</a>  		<strong>super</strong>(elem);
+<a name="87" href="#87">87</a>  
+<a name="88" href="#88">88</a>  		<strong>this</strong>.context = context;
+<a name="89" href="#89">89</a>  		<strong>this</strong>.scanner = scanner;
+<a name="90" href="#90">90</a>  	}
+<a name="91" href="#91">91</a>  
+<a name="92" href="#92">92</a>  	<em>/**<em>*</em></em>
+<a name="93" href="#93">93</a>  <em>	 * Invalidates the scanner, to make sure a new range is set later.</em>
+<a name="94" href="#94">94</a>  <em>	 * </em>
+<a name="95" href="#95">95</a>  <em>	 * @param g</em>
+<a name="96" href="#96">96</a>  <em>	 *            the graphics context.</em>
+<a name="97" href="#97">97</a>  <em>	 * @param a</em>
+<a name="98" href="#98">98</a>  <em>	 *            the shape.</em>
+<a name="99" href="#99">99</a>  <em>	 * @see View#paint(Graphics g, Shape a)</em>
+<a name="100" href="#100">100</a> <em>	 */</em>
+<a name="101" href="#101">101</a> 	<strong>public</strong> <strong>void</strong> paint(Graphics g, Shape a) {
+<a name="102" href="#102">102</a> 		JTextComponent component = (JTextComponent) getContainer();
+<a name="103" href="#103">103</a> 		Highlighter highlighter = component.getHighlighter();
+<a name="104" href="#104">104</a> 		Color unselected = component.isEnabled() ? component.getForeground() : component.getDisabledTextColor();
+<a name="105" href="#105">105</a> 		Caret caret = component.getCaret();
+<a name="106" href="#106">106</a> 		selected = !caret.isSelectionVisible() || highlighter == <strong>null</strong> ? unselected : component.getSelectedTextColor();
+<a name="107" href="#107">107</a> 
+<a name="108" href="#108">108</a> 		<strong>super</strong>.paint(g, a);
+<a name="109" href="#109">109</a> 
+<a name="110" href="#110">110</a> 		scanner.setValid(false);
+<a name="111" href="#111">111</a> 	}
+<a name="112" href="#112">112</a> 
+<a name="113" href="#113">113</a> 	<em>/**<em>*</em></em>
+<a name="114" href="#114">114</a> <em>	 * Renders the given range in the model as normal unselected text. This will</em>
+<a name="115" href="#115">115</a> <em>	 * paint the text according to the styles..</em>
+<a name="116" href="#116">116</a> <em>	 * </em>
+<a name="117" href="#117">117</a> <em>	 * @param g</em>
+<a name="118" href="#118">118</a> <em>	 *            the graphics context</em>
+<a name="119" href="#119">119</a> <em>	 * @param x</em>
+<a name="120" href="#120">120</a> <em>	 *            the starting X coordinate</em>
+<a name="121" href="#121">121</a> <em>	 * @param y</em>
+<a name="122" href="#122">122</a> <em>	 *            the starting Y coordinate</em>
+<a name="123" href="#123">123</a> <em>	 * @param start</em>
+<a name="124" href="#124">124</a> <em>	 *            the beginning position in the model</em>
+<a name="125" href="#125">125</a> <em>	 * @param end</em>
+<a name="126" href="#126">126</a> <em>	 *            the ending position in the model</em>
+<a name="127" href="#127">127</a> <em>	 * @return the location of the end of the range</em>
+<a name="128" href="#128">128</a> <em>	 * @throws BadLocationException</em>
+<a name="129" href="#129">129</a> <em>	 *             if the range is invalid</em>
+<a name="130" href="#130">130</a> <em>	 */</em>
+<a name="131" href="#131">131</a> 	<strong>protected</strong> <strong>int</strong> drawUnselectedText(Graphics g, <strong>int</strong> x, <strong>int</strong> y, <strong>int</strong> start, <strong>int</strong> end) throws BadLocationException {
+<a name="132" href="#132">132</a> 		<strong>if</strong> (<strong>this</strong>.context != <strong>null</strong>) {
+<a name="133" href="#133">133</a> 			Document doc = getDocument();
+<a name="134" href="#134">134</a> 	
+<a name="135" href="#135">135</a> 			<strong>while</strong> (start &lt; end) {
+<a name="136" href="#136">136</a> 				updateScanner(scanner, doc, start, doc.getLength());
+<a name="137" href="#137">137</a> 	
+<a name="138" href="#138">138</a> 				<strong>int</strong> position = Math.min(scanner.getEndOffset(), end);
+<a name="139" href="#139">139</a> 				position = (position &lt;= start) ? end : position;
+<a name="140" href="#140">140</a> 	
+<a name="141" href="#141">141</a> 				Style style = context.getStyle(scanner.token);
+<a name="142" href="#142">142</a> 				
+<a name="143" href="#143">143</a> 				<strong>if</strong> (style == <strong>null</strong>) {
+<a name="144" href="#144">144</a> 					style = DEFAULT_STYLE;
+<a name="145" href="#145">145</a> 				}
+<a name="146" href="#146">146</a> 	
+<a name="147" href="#147">147</a> 				<em class="comment">// color change, flush what we have</em>
+<a name="148" href="#148">148</a> 				g.setColor(context.getForeground(style));
+<a name="149" href="#149">149</a> 				g.setFont(g.getFont().deriveFont(getFontStyle(style)));
+<a name="150" href="#150">150</a> 	
+<a name="151" href="#151">151</a> 				Segment text = getLineBuffer();
+<a name="152" href="#152">152</a> 				doc.getText(start, position - start, text);
+<a name="153" href="#153">153</a> 	
+<a name="154" href="#154">154</a> 				<strong>int</strong> x1 = x;
+<a name="155" href="#155">155</a> 	
+<a name="156" href="#156">156</a> 				x = Utilities.drawTabbedText(text, x, y, g, (TabExpander) <strong>this</strong>, start);
+<a name="157" href="#157">157</a> 	
+<a name="158" href="#158">158</a> 				<strong>if</strong> (scanner.isError()) {
+<a name="159" href="#159">159</a> 					drawError(scanner, g, x1, x - x1, y, false);
+<a name="160" href="#160">160</a> 				}
+<a name="161" href="#161">161</a> 	
+<a name="162" href="#162">162</a> 				start = position;
+<a name="163" href="#163">163</a> 			}
+<a name="164" href="#164">164</a> 		}	
+<a name="165" href="#165">165</a> 		
+<a name="166" href="#166">166</a> 		<strong>return</strong> x;
+<a name="167" href="#167">167</a> 	}
+<a name="168" href="#168">168</a> 
+<a name="169" href="#169">169</a> 	<strong>private</strong> <strong>void</strong> drawError(<a href="../../../org/bounce/text/SyntaxHighlightingScanner.html">SyntaxHighlightingScanner</a> scanner, Graphics g, <strong>int</strong> x, <strong>int</strong> length, <strong>int</strong> y, <strong>boolean</strong> selected) throws BadLocationException {
+<a name="170" href="#170">170</a> 		<strong>if</strong> (isErrorHighlighting()) {
+<a name="171" href="#171">171</a> 			<strong>if</strong> (!selected) {
+<a name="172" href="#172">172</a> 				g.setColor(<strong>new</strong> Color(255, 0, 0));
+<a name="173" href="#173">173</a> 			}
+<a name="174" href="#174">174</a> 
+<a name="175" href="#175">175</a> 			Rectangle rec = ((JTextComponent) getContainer()).modelToView(scanner.getStartOffset());
+<a name="176" href="#176">176</a> 			
+<a name="177" href="#177">177</a> 			<strong>if</strong> (rec != <strong>null</strong>) {
+<a name="178" href="#178">178</a> 				drawZigZag(g, x, rec.x, length, y);
+<a name="179" href="#179">179</a> 			}
+<a name="180" href="#180">180</a> 		}
+<a name="181" href="#181">181</a> 	}
+<a name="182" href="#182">182</a> 
+<a name="183" href="#183">183</a> 	<strong>protected</strong> <strong>abstract</strong> <strong>boolean</strong> isErrorHighlighting();
+<a name="184" href="#184">184</a> 	
+<a name="185" href="#185">185</a> 	<strong>static</strong> <strong>private</strong> <strong>void</strong> drawZigZag(Graphics g, <strong>int</strong> x, <strong>int</strong> x1, <strong>int</strong> width, <strong>int</strong> y) {
+<a name="186" href="#186">186</a> 		<strong>int</strong> pos = 0;
+<a name="187" href="#187">187</a> 		<strong>int</strong> before = x - x1;
+<a name="188" href="#188">188</a> 		<strong>int</strong> npo<strong>int</strong>s = width;
+<a name="189" href="#189">189</a> 
+<a name="190" href="#190">190</a> 		<strong>if</strong> (npoints > 0) {
+<a name="191" href="#191">191</a> 			<strong>int</strong>[] xpo<strong>int</strong>s = <strong>new</strong> <strong>int</strong>[npo<strong>int</strong>s];
+<a name="192" href="#192">192</a> 			<strong>int</strong>[] ypo<strong>int</strong>s = <strong>new</strong> <strong>int</strong>[npo<strong>int</strong>s];
+<a name="193" href="#193">193</a> 
+<a name="194" href="#194">194</a> 			<strong>for</strong> (<strong>int</strong> i = 0; i &lt; npo<strong>int</strong>s; i++) {
+<a name="195" href="#195">195</a> 				<strong>int</strong> height = ((i + before) % 4);
+<a name="196" href="#196">196</a> 
+<a name="197" href="#197">197</a> 				<strong>if</strong> (height > 2) {
+<a name="198" href="#198">198</a> 					height = height - 2;
+<a name="199" href="#199">199</a> 				}
+<a name="200" href="#200">200</a> 
+<a name="201" href="#201">201</a> 				xpoints[i] = x + pos;
+<a name="202" href="#202">202</a> 				ypoints[i] = y + 2 - height;
+<a name="203" href="#203">203</a> 
+<a name="204" href="#204">204</a> 				pos += 1;
+<a name="205" href="#205">205</a> 			}
+<a name="206" href="#206">206</a> 
+<a name="207" href="#207">207</a> 			g.drawPolyline(xpoints, ypoints, npoints);
+<a name="208" href="#208">208</a> 		}
+<a name="209" href="#209">209</a> 	}
+<a name="210" href="#210">210</a> 
+<a name="211" href="#211">211</a> 	<em>/**<em>*</em></em>
+<a name="212" href="#212">212</a> <em>	 * Renders the given range in the model as selected text. This will paint</em>
+<a name="213" href="#213">213</a> <em>	 * the text according to the font as found in the styles..</em>
+<a name="214" href="#214">214</a> <em>	 * </em>
+<a name="215" href="#215">215</a> <em>	 * @param g</em>
+<a name="216" href="#216">216</a> <em>	 *            the graphics context</em>
+<a name="217" href="#217">217</a> <em>	 * @param x</em>
+<a name="218" href="#218">218</a> <em>	 *            the starting X coordinate</em>
+<a name="219" href="#219">219</a> <em>	 * @param y</em>
+<a name="220" href="#220">220</a> <em>	 *            the starting Y coordinate</em>
+<a name="221" href="#221">221</a> <em>	 * @param start</em>
+<a name="222" href="#222">222</a> <em>	 *            the beginning position in the model</em>
+<a name="223" href="#223">223</a> <em>	 * @param end</em>
+<a name="224" href="#224">224</a> <em>	 *            the ending position in the model</em>
+<a name="225" href="#225">225</a> <em>	 * @return the location of the end of the range</em>
+<a name="226" href="#226">226</a> <em>	 * @throws BadLocationException</em>
+<a name="227" href="#227">227</a> <em>	 *             if the range is invalid</em>
+<a name="228" href="#228">228</a> <em>	 */</em>
+<a name="229" href="#229">229</a> 	<strong>protected</strong> <strong>int</strong> drawSelectedText(Graphics g, <strong>int</strong> x, <strong>int</strong> y, <strong>int</strong> start, <strong>int</strong> end) throws BadLocationException {
+<a name="230" href="#230">230</a> 		g.setColor(selected);
+<a name="231" href="#231">231</a> 
+<a name="232" href="#232">232</a> 		Document doc = getDocument();
+<a name="233" href="#233">233</a> 
+<a name="234" href="#234">234</a> 		<strong>while</strong> (start &lt; end) {
+<a name="235" href="#235">235</a> 			updateScanner(scanner, doc, start, doc.getLength());
+<a name="236" href="#236">236</a> 
+<a name="237" href="#237">237</a> 			<strong>int</strong> position = (<strong>int</strong>) Math.min(scanner.getEndOffset(), end);
+<a name="238" href="#238">238</a> 			position = (position &lt;= start) ? end : position;
+<a name="239" href="#239">239</a> 
+<a name="240" href="#240">240</a> 			Style style = context.getStyle(scanner.token);
+<a name="241" href="#241">241</a> 			
+<a name="242" href="#242">242</a> 			<strong>if</strong> (style == <strong>null</strong>) {
+<a name="243" href="#243">243</a> 				style = DEFAULT_STYLE;
+<a name="244" href="#244">244</a> 			}
+<a name="245" href="#245">245</a> 
+<a name="246" href="#246">246</a> 			<em class="comment">// color change, flush what we have</em>
+<a name="247" href="#247">247</a> 			g.setFont(g.getFont().deriveFont(getFontStyle(style)));
+<a name="248" href="#248">248</a> 
+<a name="249" href="#249">249</a> 			Segment text = getLineBuffer();
+<a name="250" href="#250">250</a> 			doc.getText(start, position - start, text);
+<a name="251" href="#251">251</a> 
+<a name="252" href="#252">252</a> 			<strong>int</strong> x1 = x;
+<a name="253" href="#253">253</a> 			x = Utilities.drawTabbedText(text, x, y, g, (TabExpander) <strong>this</strong>, start);
+<a name="254" href="#254">254</a> 
+<a name="255" href="#255">255</a> 			<strong>if</strong> (scanner.isError()) {
+<a name="256" href="#256">256</a> 				drawError(scanner, g, x1, x - x1, y, <strong>true</strong>);
+<a name="257" href="#257">257</a> 			}
+<a name="258" href="#258">258</a> 
+<a name="259" href="#259">259</a> 			start = position;
+<a name="260" href="#260">260</a> 		}
+<a name="261" href="#261">261</a> 
+<a name="262" href="#262">262</a> 		<strong>return</strong> x;
+<a name="263" href="#263">263</a> 	}
+<a name="264" href="#264">264</a> 	
+<a name="265" href="#265">265</a> 	<strong>protected</strong> <strong>abstract</strong> <strong>void</strong> updateScanner(<a href="../../../org/bounce/text/SyntaxHighlightingScanner.html">SyntaxHighlightingScanner</a> scanner, Document doc, <strong>int</strong> start, <strong>int</strong> end);
+<a name="266" href="#266">266</a> 
+<a name="267" href="#267">267</a> 	<em>/**<em>*</em></em>
+<a name="268" href="#268">268</a> <em>	 * Fetch the font to use for a lexical token with the given scan value.</em>
+<a name="269" href="#269">269</a> <em>	 * </em>
+<a name="270" href="#270">270</a> <em>	 * @param style</em>
+<a name="271" href="#271">271</a> <em>	 *            the style.</em>
+<a name="272" href="#272">272</a> <em>	 * </em>
+<a name="273" href="#273">273</a> <em>	 * @return the font style</em>
+<a name="274" href="#274">274</a> <em>	 */</em>
+<a name="275" href="#275">275</a> 	<strong>public</strong> <strong>static</strong> <strong>int</strong> getFontStyle(Style style) {
+<a name="276" href="#276">276</a> 		<strong>int</strong> fontStyle = Font.PLAIN;
+<a name="277" href="#277">277</a> 
+<a name="278" href="#278">278</a> 		<strong>if</strong> (style != <strong>null</strong>) {
+<a name="279" href="#279">279</a> 			<strong>if</strong> (StyleConstants.isItalic(style)) {
+<a name="280" href="#280">280</a> 				fontStyle += Font.ITALIC;
+<a name="281" href="#281">281</a> 			}
+<a name="282" href="#282">282</a> 
+<a name="283" href="#283">283</a> 			<strong>if</strong> (StyleConstants.isBold(style)) {
+<a name="284" href="#284">284</a> 				fontStyle += Font.BOLD;
+<a name="285" href="#285">285</a> 			}
+<a name="286" href="#286">286</a> 		}
+<a name="287" href="#287">287</a> 
+<a name="288" href="#288">288</a> 		<strong>return</strong> fontStyle;
+<a name="289" href="#289">289</a> 	}
+<a name="290" href="#290">290</a> }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+
