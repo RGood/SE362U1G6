@@ -27,7 +27,7 @@ public class Editor extends javax.swing.JFrame {
     private String menuNames[] = {"New", "Open", "Save", "Save As", "Close", "Copy", 
     "Cut", "Paste", "Select All", "Indent", "Undo", "Bold", "Italic", "H1", "H2",
     "H3", "H4", "H5", "H6", "Ordered List", "UnOrdered List", "Definition List", 
-    "Table", "IMG", "HREF"};
+    "Table", "IMG", "HREF", "Links"};
     
     
     /**
@@ -193,6 +193,8 @@ public class Editor extends javax.swing.JFrame {
         Table = new TableTagCommand(jTabbedPane3, this);
         IMG = new IMGcommand(jTabbedPane3, this);
         HREF = new HREFcommand(jTabbedPane3, list, this);
+        View = new javax.swing.JMenu();
+        Links = new LinksCommand(list);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -282,9 +284,15 @@ public class Editor extends javax.swing.JFrame {
 
         items.add(HREF);
         jMenu3.add(HREF);
-        addActionAndName(items, menuNames);
 
         jMenuBar1.add(jMenu3);
+
+        View.setText("View");
+        View.add(Links);
+        items.add(Links);
+        addActionAndName(items, menuNames);
+
+        jMenuBar1.add(View);
 
         setJMenuBar(jMenuBar1);
 
@@ -386,6 +394,7 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenuItem IMG;
     private javax.swing.JMenuItem Indent;
     private javax.swing.JMenuItem Italic;
+    private javax.swing.JMenuItem Links;
     private javax.swing.JMenuItem New;
     private javax.swing.JMenuItem Open;
     private javax.swing.JMenuItem OrderedList;
@@ -396,6 +405,7 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenuItem Table;
     private javax.swing.JMenuItem UnOrderedList;
     private javax.swing.JMenuItem Undo;
+    private javax.swing.JMenu View;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

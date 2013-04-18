@@ -176,9 +176,21 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="HREF">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="addActionAndName(items, menuNames);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new HREFcommand(jTabbedPane3, list, this)"/>
                 <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="items.add(HREF);"/>
+              </AuxValues>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="View">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="View"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="Links">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="items.add(Links);&#xa;addActionAndName(items, menuNames);"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new LinksCommand(list)"/>
               </AuxValues>
             </MenuItem>
           </SubComponents>
