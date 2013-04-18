@@ -7,8 +7,6 @@ package se362project1;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,10 +25,10 @@ import javax.swing.KeyStroke;
 public class Editor extends javax.swing.JFrame {
     FormatCheck checker = new BasicHTMLParser();
     private ArrayList<JMenuItem> items = new ArrayList<JMenuItem>();
-    private String menuNames[] = {"New", "Open", "Save", "Save As", "Close", "Copy", 
+    private String[] menuNames = {"New", "Open", "Save", "Save As", "Close", "Copy", 
     "Cut", "Paste", "Select All", "Indent", "Undo", "Bold", "Italic", "H1", "H2",
     "H3", "H4", "H5", "H6", "Ordered List", "UnOrdered List", "Definition List", 
-    "Table", "IMG", "HREF", "Links"};
+    "Table", "IMG", "HREF", "Links", "Outline"};
     
     
     /**
@@ -64,6 +62,13 @@ public class Editor extends javax.swing.JFrame {
         buf.setFileName(fileName);
         buf.save();
         jTabbedPane3.setTitleAt(jTabbedPane3.getSelectedIndex(), buf.getFileName());
+    }
+    
+    public void openCurOutline(){
+        HTMLBuffer buf = (HTMLBuffer)jTabbedPane3.getSelectedComponent().getKeyListeners()[1];
+        OutlineView outline = new OutlineView(buf.getText());
+        outline.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        outline.setVisible(true);
     }
     
     public void closeCur(){
@@ -198,6 +203,7 @@ public class Editor extends javax.swing.JFrame {
         HREF = new HREFcommand(jTabbedPane3, list, this);
         View = new javax.swing.JMenu();
         Links = new LinksCommand(list);
+        Outline = new OutlineViewCommand(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -295,6 +301,8 @@ public class Editor extends javax.swing.JFrame {
         View.setText("View");
         View.add(Links);
         items.add(Links);
+        View.add(Outline);
+        items.add(Outline);
         addActionAndName(items, menuNames);
 
         jMenuBar1.add(View);
@@ -336,7 +344,8 @@ public class Editor extends javax.swing.JFrame {
                 }
             });
         }
-        
+        System.out.print(names.length);
+         System.out.print(items.size());
         addShortCuts(items);
     }
     
@@ -414,6 +423,7 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenuItem New;
     private javax.swing.JMenuItem Open;
     private javax.swing.JMenuItem OrderedList;
+    private javax.swing.JMenuItem Outline;
     private javax.swing.JMenuItem Paste;
     private javax.swing.JMenuItem Save;
     private javax.swing.JMenuItem SaveAs;
