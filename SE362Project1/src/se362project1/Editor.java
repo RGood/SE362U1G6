@@ -25,10 +25,10 @@ import javax.swing.KeyStroke;
 public class Editor extends javax.swing.JFrame {
     FormatCheck checker = new BasicHTMLParser();
     private ArrayList<JMenuItem> items = new ArrayList<JMenuItem>();
-    private String menuNames[] = {"New", "Open", "Save", "Save As", "Close", "Copy", 
+    private String[] menuNames = {"New", "Open", "Save", "Save As", "Close", "Copy", 
     "Cut", "Paste", "Select All", "Indent", "Undo", "Bold", "Italic", "H1", "H2",
     "H3", "H4", "H5", "H6", "Ordered List", "UnOrdered List", "Definition List", 
-    "Table", "IMG", "HREF", "Links"};
+    "Table", "IMG", "HREF", "Links", "Outline"};
     
     
     /**
@@ -203,6 +203,7 @@ public class Editor extends javax.swing.JFrame {
         HREF = new HREFcommand(jTabbedPane3, list, this);
         View = new javax.swing.JMenu();
         Links = new LinksCommand(list);
+        Outline = new OutlineViewCommand(this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -300,6 +301,8 @@ public class Editor extends javax.swing.JFrame {
         View.setText("View");
         View.add(Links);
         items.add(Links);
+        View.add(Outline);
+        items.add(Outline);
         addActionAndName(items, menuNames);
 
         jMenuBar1.add(View);
@@ -341,7 +344,8 @@ public class Editor extends javax.swing.JFrame {
                 }
             });
         }
-        
+        System.out.print(names.length);
+         System.out.print(items.size());
         addShortCuts(items);
     }
     
@@ -419,6 +423,7 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenuItem New;
     private javax.swing.JMenuItem Open;
     private javax.swing.JMenuItem OrderedList;
+    private javax.swing.JMenuItem Outline;
     private javax.swing.JMenuItem Paste;
     private javax.swing.JMenuItem Save;
     private javax.swing.JMenuItem SaveAs;

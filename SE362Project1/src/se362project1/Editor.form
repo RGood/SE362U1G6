@@ -190,8 +190,14 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="Links">
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="items.add(Links);&#xa;addActionAndName(items, menuNames);"/>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="items.add(Links);"/>
                 <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new LinksCommand(list)"/>
+              </AuxValues>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="Outline">
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="items.add(Outline);&#xa;addActionAndName(items, menuNames);"/>
+                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new OutlineViewCommand(this)"/>
               </AuxValues>
             </MenuItem>
           </SubComponents>
