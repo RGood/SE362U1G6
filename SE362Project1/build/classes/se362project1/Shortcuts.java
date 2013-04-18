@@ -25,7 +25,7 @@ public class Shortcuts implements KeyListener {
         KeyEvent.VK_I, KeyEvent.VK_U, KeyEvent.VK_B, KeyEvent.VK_I, KeyEvent.VK_1, 
         KeyEvent.VK_2,KeyEvent.VK_3, KeyEvent.VK_4, KeyEvent.VK_5, KeyEvent.VK_6, 
         KeyEvent.VK_W, KeyEvent.VK_Q, KeyEvent.VK_D, KeyEvent.VK_T, KeyEvent.VK_P,
-        KeyEvent.VK_U, KeyEvent.VK_V};
+        KeyEvent.VK_U, KeyEvent.VK_V, KeyEvent.VK_L};
     
     int[] input = {InputEvent.CTRL_MASK, InputEvent.CTRL_MASK, InputEvent.CTRL_MASK, 
         InputEvent.CTRL_MASK, InputEvent.CTRL_MASK, InputEvent.CTRL_MASK,
@@ -35,7 +35,7 @@ public class Shortcuts implements KeyListener {
         InputEvent.SHIFT_MASK, InputEvent.SHIFT_MASK, InputEvent.SHIFT_MASK, 
         InputEvent.SHIFT_MASK, InputEvent.SHIFT_MASK, InputEvent.SHIFT_MASK,
         InputEvent.SHIFT_MASK, InputEvent.SHIFT_MASK, InputEvent.SHIFT_MASK, 
-        InputEvent.SHIFT_MASK, InputEvent.CTRL_MASK};
+        InputEvent.SHIFT_MASK, InputEvent.CTRL_MASK, InputEvent.CTRL_MASK};
 
     public Shortcuts() {
     }
