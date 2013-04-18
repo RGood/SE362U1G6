@@ -24,6 +24,7 @@ public class OutlineView extends JFrame {
         XMLEditorKit kit = new XMLEditorKit();
         kit.setAutoIndentation(true);
         kit.setTagCompletion(true);
+        editor.setEditable(false);
         editor.setEditorKit(kit);
     }
 
