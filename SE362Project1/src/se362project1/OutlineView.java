@@ -26,6 +26,7 @@ public class OutlineView extends JFrame {
         kit.setTagCompletion(true);
         editor.setEditable(false);
         editor.setEditorKit(kit);
+        this.add(editor);
     }
 
     /**
