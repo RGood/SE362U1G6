@@ -4,11 +4,9 @@
  */
 package se362project1;
 
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
-import org.bounce.text.xml.XMLEditorKit;
 
 /**
  *
@@ -24,11 +22,13 @@ public class OutlineView extends javax.swing.JFrame {
         initComponents();
         html = HTMLText;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        JEditorPane editor = new JEditorPane(); 
-        XMLEditorKit kit = new XMLEditorKit();
-        kit.setAutoIndentation(true);
-        kit.setTagCompletion(true);
-        editor.setEditorKit(kit);
+        JTree tree = new JTree(GenerateNode(HTMLText));
+        this.add(tree);
+    }
+    
+    private DefaultMutableTreeNode GenerateNode(String htmlText){
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode();
+        return node;
     }
 
     /**

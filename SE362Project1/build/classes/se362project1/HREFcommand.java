@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se362project1;
 
 import java.awt.event.ActionEvent;
@@ -33,10 +29,12 @@ public class HREFcommand extends JMenuItem implements Command, ActionListener {
     private JPanel panel;
     private JLabel colLabel;
     private JLabel rowLabel;
+    private Editor ed;
 
-    public HREFcommand(JTabbedPane text, LinksList e) {
+    public HREFcommand(JTabbedPane text, LinksList e, Editor ed) {
         this.text = text;
         this.e = e;  
+        this.ed = ed;
     }
 
     @Override
@@ -66,12 +64,10 @@ public class HREFcommand extends JMenuItem implements Command, ActionListener {
     }
 
     @Override
-    public void undo() {
-    }
-
-    @Override
     public void actionPerformed(ActionEvent ae) {
 
+        ed.saveCurState();
+        
         if (ae.getSource().equals(confirm)) {
             pane = (JEditorPane) text.getSelectedComponent();
 
@@ -85,7 +81,6 @@ public class HREFcommand extends JMenuItem implements Command, ActionListener {
             
             e.addLink(cols.getText(), text.getSelectedIndex());
             e.displayLinksList(text);
-            e.update();
             frame.dispose();
         }else{
             

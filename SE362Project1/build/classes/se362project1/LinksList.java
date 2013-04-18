@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package se362project1;
 
 import javax.swing.*;
@@ -15,7 +11,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 /**
  *
- * @author grantstacey
+ * @author christopher norman
  */
 public class LinksList implements ActionListener, ListSelectionListener {
     
@@ -26,9 +22,10 @@ public class LinksList implements ActionListener, ListSelectionListener {
     private JButton inorderbutton;
     private JTabbedPane pane;
     private JLabel label;
+    public JFrame f;
     
     public LinksList(JTabbedPane pane){
-        JFrame f = new JFrame("Links List");
+        f = new JFrame("Links List");
         JPanel panel = new JPanel();
         JPanel buttonPanel = new JPanel();
         updatebutton = new JButton("Update");
@@ -49,7 +46,7 @@ public class LinksList implements ActionListener, ListSelectionListener {
         inorderbutton.addActionListener(this);
         list.addListSelectionListener(this);
         f.setSize(400, 400);
-        f.setVisible(true);
+        f.setVisible(false);
     }
     
     public void displayLinksList(JTabbedPane pane) {
@@ -58,7 +55,6 @@ public class LinksList implements ActionListener, ListSelectionListener {
     }
     
     public void addLink(String URL, int index){
-
         
         try {
            URLlist.get(index);
@@ -72,6 +68,26 @@ public class LinksList implements ActionListener, ListSelectionListener {
     }
     
     public void update(){
+        JEditorPane text = (JEditorPane)pane.getSelectedComponent();
+        String HTML = text.getText();
+        
+        URLlist.get(pane.getSelectedIndex()).clear();
+        
+        for(int i = 0; i < HTML.length(); i++){
+            String temp = "";
+            if(HTML.charAt(i) == 'h' && HTML.charAt(i + 1) == 'r' && 
+                    HTML.charAt(i + 2) == 'e' && HTML.charAt(i + 3) == 'f'){
+                int s  = (i + 6);
+                while(HTML.charAt(s) != '"'){
+                    temp += HTML.charAt(s);
+                    s++;
+                    
+                }
+                addLink(temp, pane.getSelectedIndex());
+            }
+        }
+        
+        
         list.setListData(URLlist.get(pane.getSelectedIndex()).toArray());
     }
     
