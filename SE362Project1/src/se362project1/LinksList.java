@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -26,6 +28,12 @@ public class LinksList implements ActionListener, ListSelectionListener {
     
     public LinksList(JTabbedPane pane){
         f = new JFrame("Links List");
+        f.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e) {
+                f.setVisible(false);
+            }
+        });
         JPanel panel = new JPanel();
         JPanel buttonPanel = new JPanel();
         updatebutton = new JButton("Update");
