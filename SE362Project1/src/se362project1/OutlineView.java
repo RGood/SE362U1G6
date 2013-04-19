@@ -1,15 +1,22 @@
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-                           
     /*//GEN-END:initComponents
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 package se362project1;
 
+import java.awt.BorderLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import org.bounce.text.LineNumberMargin;
+import org.bounce.text.ScrollableEditorPanel;
 import org.bounce.text.xml.XMLEditorKit;
+import org.bounce.text.xml.XMLFoldingMargin;
 
 /**
  *
@@ -21,40 +28,52 @@ public class OutlineView extends JFrame {
      * Creates new form OutlineView
      */
     public OutlineView(String HTMLText) {
-        initComponents();
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        XMLEditorKit kit = new XMLEditorKit();
-        kit.setAutoIndentation(true);
-        kit.setTagCompletion(true);
-        kit.install(jEditorPane1);
-        jEditorPane1.setEditorKit(kit);
-        jEditorPane1.setText(HTMLText);
-        jEditorPane1.setEditable(false);
-        jEditorPane1.repaint();
-        this.repaint();
+        try {
+            initComponents();
+            JEditorPane editor = new JEditorPane();
+            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            XMLEditorKit kit = new XMLEditorKit();
+            kit.setAutoIndentation(true);
+            kit.setTagCompletion(true);
+            editor.setEditorKit(kit);
+            editor.setText(HTMLText);
+            editor.setEditable(false);
+            editor.getDocument().putProperty(XMLEditorKit.ERROR_HIGHLIGHTING_ATTRIBUTE, true);
+            
+            ScrollableEditorPanel editorPanel = new ScrollableEditorPanel(editor);
+            
+            JScrollPane scroller = new JScrollPane(editorPanel);
+            
+            JPanel rowHeader = new JPanel(new BorderLayout());
+            rowHeader.add(new XMLFoldingMargin(editor), BorderLayout.EAST);
+            rowHeader.add(new LineNumberMargin(editor), BorderLayout.WEST);
+            scroller.setRowHeaderView(rowHeader);
+            
+            this.getContentPane().setLayout(new BorderLayout());
+            this.getContentPane().add(scroller,BorderLayout.CENTER);
+            this.repaint();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(OutlineView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jScrollPane1.setViewportView(jEditorPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
-    }// </editor-fold>                     
+    }// </editor-fold>                                            
 
     /**
      * @param args the command line arguments
@@ -91,7 +110,6 @@ public class OutlineView extends JFrame {
         });
     }
     // Variables declaration - do not modify              
-    JEditorPane jEditorPane1 = new JEditorPane();
-    JScrollPane jScrollPane1 = new JScrollPane();
+    
     // End of variables declaration                   
 }

@@ -18,8 +18,8 @@ import javax.swing.JTabbedPane;
 public class OpenCommand extends JMenuItem implements Command{
 
     private JFileChooser choose;
-    private File file;
     private JEditorPane text;
+    private File file;
     private JTabbedPane pane;
     private Editor e;
   
@@ -36,23 +36,16 @@ public class OpenCommand extends JMenuItem implements Command{
     @Override
     public void execute() {
        text = new JEditorPane();
-       choose.showOpenDialog(null);
-       file = choose.getSelectedFile();
-       e.openTab(file.getPath());
+       int option = choose.showOpenDialog(null);
+       if(option == JFileChooser.APPROVE_OPTION){
+           file = choose.getSelectedFile();
+           e.openTab(file.getPath());      
+       }
+       
     }
     
     public String getFile(){
      return file.getPath();
     }
-
-    @Override
-    public void undo() {
-
-
-    }
-
-
-
-
 
 }
